@@ -40,6 +40,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <I2C3.h>
 #include "tm4c123gh6pm.h"
 #include "clock.h"
 #include "eeprom.h"
@@ -56,6 +57,8 @@
 #include "tcp.h"
 #include "mqtt.h"
 #include "socket.h"
+#include "bme680.h"
+#include "I2C3.h"
 
 // Pins
 #define RED_LED PORTF,1
@@ -77,24 +80,21 @@
 //global flags
 bool ARP_SENT = false;
 bool SYN_NEEDED = false;
+bool printAirData = false;
 
 //added flag to publish message is turned on every 15 sec by timer
 volatile bool PUBLISH_MESSAGE = false;
-
-
-
 
 //-----------------------------------------------------------------------------
 // Subroutines                
 //-----------------------------------------------------------------------------
 
-
 //callback for timer added
 void publishMessageCallback(void)
 {
     PUBLISH_MESSAGE = true;
+    return;
 }
-
 
 // Initialize Hardware
 void initHw()
@@ -317,6 +317,10 @@ void processShell()
             {
                 displayConnectionInfo();
             }
+            if (strcmp(token, "airdata") == 0)
+            {
+                printAirData = true;
+            }
             if (strcmp(token, "ping") == 0)
             {
                 for (i = 0; i < IP_ADD_LENGTH; i++)
@@ -431,17 +435,12 @@ void processShell()
 
 int main(void)
 {
-    //added
-
     uint8_t buffer[MAX_PACKET_SIZE];
     etherHeader *data = (etherHeader*) buffer;
     socket s;
 
-
-
     // Init controller
     initHw();
-
 
     // Setup UART0
     initUart0();
@@ -450,23 +449,27 @@ int main(void)
     // Init timer
     initTimer();
 
-
-    //start timer added
-     if (!startPeriodicTimer(publishMessageCallback, 15)) {
-             putsUart0("Failed to start publish timer\n");
-         }
-
     // Init sockets
     initSockets();
+
+    // init I2C
+    initI2C3();
 
     // Init ethernet interface (eth0)
     putsUart0("\nStarting eth0\n");
     initEther(ETHER_UNICAST | ETHER_BROADCAST | ETHER_HALFDUPLEX);
-    setEtherMacAddress(2, 3, 4, 5, 6, 120);
+    setEtherMacAddress(2, 3, 4, 5, 6, 109);
 
     // Init EEPROM
     initEeprom();
     readConfiguration();
+    startbme();
+
+    //start timer added
+//    if (!startPeriodicTimer(publishMessageCallback, 240))
+//    {
+//        putsUart0("Failed to start publish timer\n");
+//    }
 
     setPinValue(GREEN_LED, 1);
     waitMicrosecond(100000);
@@ -492,10 +495,35 @@ int main(void)
         sendArpRequest(data, localAddress, remoteAddress);
     }
 /***********************************************************************/
+
+/*testing I2C for BME680 *******************************************/
+//    char buff[100];
+//    putsUart0("I2C test \n");
+//    uint8_t test = readDataFromRegI2C3(bme_add, id);
+//    snprintf(buff, 12, "ID: %d\n", test);
+//    putsUart0(buff);
+
+/*******************************************************************/
     while (true)
     {
         // Terminal processing here
         processShell();
+#ifdef DEBUG
+//        static int debugCounter = 0;
+//            debugCounter++;
+//            if(debugCounter > 100000)
+//            {
+//                debugCounter = 0;
+//                updateBmeData();
+//                printData();
+//            }
+#endif
+        updateBmeData();
+        if(printAirData)
+        {
+            printData();
+            printAirData = false;
+        }
 
         // TCP pending messages
         sendTcpPendingMessages(data);

@@ -153,7 +153,3 @@ uint32_t random32()
     return TIMER4_TAV_R;
 }
 
-
-
-
-

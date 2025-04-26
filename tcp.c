@@ -25,6 +25,8 @@
 #include "socket.h"
 #include "mqtt.h"
 #include "gpio.h"
+#include "uart0.h"
+#include "bme680.h"
 
 // ------------------------------------------------------------------------------
 //  Globals
@@ -45,6 +47,13 @@ uint16_t tcpPorts[MAX_TCP_PORTS];
 uint8_t tcpPortCount = 0;
 uint8_t tcpState[MAX_TCP_PORTS];
 bool sendSynAckFlag;
+//
+
+extern char* sub_list[5];
+extern uint8_t sub_count;
+//extern volatile bmeDataRaw* bmeRaw;
+//extern volatile bmeData_s* bmeData;
+//extern volatile bmeCalibrationData* bmeCal;
 
 // ------------------------------------------------------------------------------
 //  Structures
@@ -169,6 +178,9 @@ void sendTcpPendingMessages(etherHeader *ether)
             }
 
             putcUart0('\n');
+            char buff[20];
+            snprintf(buff, 30, "Number of Subscriptions: %d\n", sub_count);
+            putsUart0(buff);
             s->PRINT_STATUS = false;
         }
         switch(tcpState[0])
@@ -182,6 +194,11 @@ void sendTcpPendingMessages(etherHeader *ether)
                        s->state = TCP_ESTABLISHED;
                        s->MQTT_CONNECT = true;
                    }
+//                   if(flags & (RST | ACK))
+//                   {
+//                       setTcpState(0, TCP_CLOSED);
+//                       s->state = TCP_CLOSED;
+//                   }
                    break;
                case TCP_SYN_RECEIVED:
                    if (flags & ACK)
@@ -191,7 +208,6 @@ void sendTcpPendingMessages(etherHeader *ether)
                    }
                    break;
                case TCP_ESTABLISHED:
-
                    // Handle data transfer or closing connection
                    if(s->FIN_NEEDED)
                    {
@@ -216,7 +232,7 @@ void sendTcpPendingMessages(etherHeader *ether)
                    else if(s->MQTT_CONNECT)
                    {
                        connectMqtt(ether);
-                       subscribeMqtt("topic1");
+//                       subscribeMqtt("topic1");
                        s->MQTT_CONNECT = false;
                        break;
                    }
@@ -236,24 +252,23 @@ void sendTcpPendingMessages(etherHeader *ether)
                        s->MQTT_PING = false;
                        break;
                    }
-
                    //added publish message if the flag is on
-                   else if (PUBLISH_MESSAGE) {
-                       PUBLISH_MESSAGE = false;
-
-
-                       // generate 0 or 1
-                       uint32_t bit = (random32() % (1 - 0 + 1)) + 0;
-
-                       // pick the string based on bit
-                       const char *state = bit ? "on" : "off";
-
-                       // publish
-                       publishMqtt("topic1", state);
-
+                   else if (PUBLISH_MESSAGE)
+                   {
+//                       PUBLISH_MESSAGE = false;
+                       char buff2[10];
+                       char* temp_;
+                       char temp[] = "bmeTemp";
+                       char hum[] = "bmeHum";
+                       char press[] = "bmePress";
+                       char aqi[] = "bmeAQI";
+                       bmeData_s* bmeData2 =  getBmeData();
+                       temp_ = (char*)&aqi;
+                       snprintf(buff2, 8, "%.3f", bmeData2->AQI);
+                       publishMqtt(temp_, buff2);
                    }
-                   break;
 
+                   break;
                case TCP_CLOSE_WAIT:
                    setTcpState(0, TCP_CLOSED);
                    s->state = TCP_CLOSED;
@@ -362,6 +377,7 @@ void processTcpResponse(etherHeader *ether)
     }
     else if(m->controlHeader == 0x32 && m != NULL)
     {
+        char buffer[100];
         uint8_t length = m->remainLength; // needs to be properly decoded
         uint8_t* ptr = m->variableHeader;
         uint16_t topicLen;
@@ -370,6 +386,7 @@ void processTcpResponse(etherHeader *ether)
         ptr = ptr + 2; // move to topicname
 
         //variables for topic1
+        memcpy(buffer, ptr, topicLen);
         char topic1[] = "topic1";
         char on[] = "on";
         char off[] = "off";
@@ -377,6 +394,10 @@ void processTcpResponse(etherHeader *ether)
         uint8_t* poff = (uint8_t*) &off;
         uint8_t* ptopic1 = (uint8_t*) &topic1;
 
+        putsUart0("Received: ");
+        putsUart0(topic1);
+        putcUart0('\n');
+        ptr = ptr + strlen(topic1) + 2; //move over topic and message id
         //variables for topic2
         char topic2[] = "topic2";
         uint8_t* ptopic2 = (uint8_t*) topic2;
@@ -540,7 +561,7 @@ void sendTcpMessage(etherHeader *ether, socket *s, uint16_t flags, uint8_t data[
     ip->rev = 0x4;
     ip->size = 0x5;
     ip->typeOfService = 0;
-    ip->id = 0;
+//    ip->id = 0;
     ip->flagsAndOffset = 0;
     ip->ttl = 128;
     ip->protocol = PROTOCOL_TCP;

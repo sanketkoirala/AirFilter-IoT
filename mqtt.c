@@ -20,12 +20,15 @@
 #include <string.h>
 #include "mqtt.h"
 #include "timer.h"
+#include "uart0.h"
 
 // ------------------------------------------------------------------------------
 //  Globals
 // ------------------------------------------------------------------------------
 
 uint8_t KEEP_ALIVE;
+char* sub_list[5];
+uint8_t sub_count = 0;
 // ------------------------------------------------------------------------------
 //  Structures
 // ------------------------------------------------------------------------------
@@ -159,6 +162,7 @@ void subscribeMqtt(char strTopic[])
     uint16_t topicLen = strlen(strTopic);
     //handling topic
     p->topicNameLen = htons(topicLen);
+    sub_list[sub_count++] = strTopic;
     memcpy(p->topicName, strTopic, topicLen);
     //handling qos
     uint8_t qos = 2;
@@ -175,6 +179,7 @@ void unsubscribeMqtt(char strTopic[])
 {
     uint8_t etherBuffer[1518];
     uint8_t buffer[250];
+    uint8_t i, j;
     mqttFixedHeader* m = (mqttFixedHeader*) buffer;
     etherHeader* ether = (etherHeader*) etherBuffer;
     m->controlHeader = 0xA2;
@@ -182,6 +187,17 @@ void unsubscribeMqtt(char strTopic[])
     mqttSubscribeHeader* p = (mqttSubscribeHeader*) m->variableHeader;
     p->packetId = (random32() % (65000 - 0 + 1)) + 0;
     uint16_t topicLen = strlen(strTopic);
+    for (i = 0; i < sub_count; i++)
+    {
+        if(!memcmp(strTopic, sub_list[i], strlen(strTopic)+1))
+        {
+            for(j = i; j < sub_count - 1; j++)
+            {
+                sub_list[j] = sub_list[j+1];
+            }
+            sub_count--;
+        }
+    }
     //handling topic
     p->topicNameLen = htons(topicLen);
     memcpy(p->topicName, strTopic, topicLen);

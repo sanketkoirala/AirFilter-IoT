@@ -43,7 +43,7 @@ typedef struct _socket
     bool MQTT_PING;
     bool PRINT_STATUS;
     bool MQTT_CONNECTED;
-    bool PUBLISH_MESSAGE;
+    bool PUBLISH;
 } socket;
 
 //-----------------------------------------------------------------------------
