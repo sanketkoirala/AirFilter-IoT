@@ -45,6 +45,7 @@ typedef struct
     uint32_t adc_H; // humidity
     uint16_t adc_G; // gas
     uint8_t gas_range;
+    bool dev_on;
 }bmeDataRaw;
 
 typedef struct {

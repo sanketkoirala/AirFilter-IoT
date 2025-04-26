@@ -139,6 +139,12 @@ float calculateAQI()
 
 void startbme()
 {
+    if(readDataFromRegI2C3(bme_add, id) != 97)
+    {
+        bmeRaw->dev_on = false;
+        return;
+    }
+    bmeRaw->dev_on = true;
     writeDatatoRegI2C3(bme_add, config, 0x0C); // setting iir filter to 7 00001100
     writeDatatoRegI2C3(bme_add, ctrl_hum, 0x02); // hum 2X oversampling
     //over sampling for temperature, humidity, and pressure
@@ -186,6 +192,8 @@ void startbme()
 
 void readBmeRaw()
 {
+    if(bmeRaw->dev_on == false)
+        return;
     uint8_t i = 0;
     uint8_t statusvar = readDataFromRegI2C3(bme_add, eas_status_0);
     uint8_t gas_lsbtemp = readDataFromRegI2C3(bme_add, gas_r_lsb);
@@ -227,6 +235,8 @@ void readBmeRaw()
 
 void updateBmeData()
 {
+    if(bmeRaw->dev_on == false)
+            return;
     readBmeRaw();
     bmeData->temperature = calculateTemp();
     bmeData->pressure = calculatePress();
@@ -238,6 +248,8 @@ void updateBmeData()
 
 void readBmeCalibrationData()
 {
+    if(bmeRaw->dev_on == false)
+            return;
     //temp calibration data
     bmeCal->par_T1 = readDataFromRegI2C3(bme_add, 0xE9);
     bmeCal->par_T1 |= ((uint16_t)readDataFromRegI2C3(bme_add, 0xEA)) << 8;
@@ -295,6 +307,8 @@ void readBmeCalibrationData()
 
 void printData()
 {
+    if(bmeRaw->dev_on == false)
+            return;
     char buff[100];
     snprintf(buff, 100, "Raw Data Read-out:\nadc_T: %d\t adc_P: %d\t adc_H: %d\t adc_G: %d\t gas_range: %d\n",
              bmeRaw->adc_T, bmeRaw->adc_P, bmeRaw->adc_H, bmeRaw->adc_G, bmeRaw->gas_range);

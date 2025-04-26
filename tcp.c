@@ -380,6 +380,7 @@ void processTcpResponse(etherHeader *ether)
         char buffer[100];
         uint8_t length = m->remainLength; // needs to be properly decoded
         uint8_t* ptr = m->variableHeader;
+        uint8_t* ptr2;
         uint16_t topicLen;
         memcpy(&topicLen, ptr, 2);
         topicLen = ntohs(topicLen);
@@ -394,10 +395,10 @@ void processTcpResponse(etherHeader *ether)
         uint8_t* poff = (uint8_t*) &off;
         uint8_t* ptopic1 = (uint8_t*) &topic1;
 
-        putsUart0("Received: ");
-        putsUart0(topic1);
-        putcUart0('\n');
-        ptr = ptr + strlen(topic1) + 2; //move over topic and message id
+//        putsUart0("Received: ");
+//        putsUart0(topic1);
+//        putcUart0('\n');
+        ptr2 = ptr + strlen(topic1) + 2; //move over topic and message id
         //variables for topic2
         char topic2[] = "topic2";
         uint8_t* ptopic2 = (uint8_t*) topic2;
@@ -409,12 +410,12 @@ void processTcpResponse(etherHeader *ether)
             putsUart0(topic1);
             putcUart0('\n');
             ptr = ptr + strlen(topic1) + 2; //move over topic and message id
-            if(!memcmp(pon, ptr, strlen(on)))
+            if(!memcmp(pon, ptr2, strlen(on)))
             {
                 setPinValue(BLUE_LED, 1);
                 setPinValue(FAN, 1);
             }
-            else if(!memcmp(poff, ptr, strlen(on)))
+            else if(!memcmp(poff, ptr2, strlen(on)))
             {
                 setPinValue(BLUE_LED, 0);
                 setPinValue(FAN, 0);

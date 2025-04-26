@@ -65,7 +65,7 @@ void connectMqtt(etherHeader* ether)
     m->protocolName[1] = 'Q';
     m->protocolName[2] = 'T';
     m->protocolName[3] = 'T';
-    uint8_t client[] = {"client-001"};
+    uint8_t client[] = {"client-rmd"};
 
     mqttConnect* c = (mqttConnect*) m->data;
 
