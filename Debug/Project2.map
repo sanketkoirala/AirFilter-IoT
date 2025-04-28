@@ -1,33 +1,33 @@
 ******************************************************************************
                   TI ARM Linker Unix v20.2.7                   
 ******************************************************************************
->> Linked Thu Apr 24 14:14:14 2025
+>> Linked Mon Apr 28 18:13:35 2025
 
 OUTPUT FILE NAME:   <Project2.out>
-ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 000073d5
+ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 00008ca1
 
 
 MEMORY CONFIGURATION
 
          name            origin    length      used     unused   attr    fill
 ----------------------  --------  ---------  --------  --------  ----  --------
-  FLASH                 00000000   00040000  00007895  0003876b  R  X
-  SRAM                  20000000   00008000  00001280  00006d80  RW X
+  FLASH                 00000000   00040000  00009273  00036d8d  R  X
+  SRAM                  20000000   00008000  000012f1  00006d0f  RW X
 
 
 SEGMENT ALLOCATION MAP
 
 run origin  load origin   length   init length attrs members
 ----------  ----------- ---------- ----------- ----- -------
-00000000    00000000    000078a0   000078a0    r-x
+00000000    00000000    00009278   00009278    r-x
   00000000    00000000    0000026c   0000026c    r-- .intvecs
-  0000026c    0000026c    000073f8   000073f8    r-x .text
-  00007668    00007668    000001f9   000001f9    r-- .const
-  00007868    00007868    00000038   00000038    r-- .cinit
-20000000    20000000    00001283   00000000    rw-
+  0000026c    0000026c    00008d24   00008d24    r-x .text
+  00008f90    00008f90    0000029b   0000029b    r-- .const
+  00009230    00009230    00000048   00000048    r-- .cinit
+20000000    20000000    000012f4   00000000    rw-
   20000000    20000000    00001000   00000000    rw- .stack
-  20001000    20001000    00000251   00000000    rw- .bss
-  20001254    20001254    0000002f   00000000    rw- .data
+  20001000    20001000    000002b5   00000000    rw- .bss
+  200012b8    200012b8    0000003c   00000000    rw- .data
 
 
 SECTION ALLOCATION MAP
@@ -38,137 +38,156 @@ section   page    origin      length       input sections
 .intvecs   0    00000000    0000026c     
                   00000000    0000026c     tm4c123gh6pm_startup_ccs.obj (.intvecs)
 
-.text      0    0000026c    000073f8     
-                  0000026c    00000cdc     tcp.obj (.text)
-                  00000f48    00000bfc     ethernet.obj (.text)
-                  00001b44    00000b14     rtsv7M4_T_le_v4SPD16_eabi.lib : _scanfi.c.obj (.text:__TI_scanfi)
-                  00002658    00000a4e                                   : _printfi.c.obj (.text:__TI_printfi)
-                  000030a6    00000002                                   : div0.asm.obj (.text)
-                  000030a8    00000808     gpio.obj (.text)
-                  000038b0    00000714     eth0.obj (.text)
-                  00003fc4    000004b0     ip.obj (.text)
-                  00004474    00000460     rtsv7M4_T_le_v4SPD16_eabi.lib : strtod.c.obj (.text:strtod)
-                  000048d4    00000408     mqtt.obj (.text)
-                  00004cdc    00000338     timer.obj (.text)
-                  00005014    000002f8     socket.obj (.text)
-                  0000530c    000002f4     arp.obj (.text)
-                  00005600    00000270     rtsv7M4_T_le_v4SPD16_eabi.lib : _printfi.c.obj (.text:_pconv_a)
-                  00005870    000001dc                                   : strtoll.c.obj (.text:strtoll)
-                  00005a4c    000001d0                                   : _printfi.c.obj (.text:_pconv_g)
-                  00005c1c    000001b6                                   : fd_add_t2.asm.obj (.text)
-                  00005dd2    00000160     icmp.obj (.text)
-                  00005f32    00000002     --HOLE-- [fill = 0]
-                  00005f34    00000160     spi0.obj (.text)
-                  00006094    0000015c     rtsv7M4_T_le_v4SPD16_eabi.lib : strtoull.c.obj (.text:strtoull)
-                  000061f0    0000013c                                   : _printfi.c.obj (.text:_pconv_e)
-                  0000632c    00000136                                   : fd_div_t2.asm.obj (.text)
-                  00006462    00000002     --HOLE-- [fill = 0]
-                  00006464    00000130                                   : strtol.c.obj (.text:strtol)
-                  00006594    00000128     uart0.obj (.text)
-                  000066bc    00000124     rtsv7M4_T_le_v4SPD16_eabi.lib : _printfi.c.obj (.text:fcvt)
-                  000067e0    00000110                                   : s_scalbn.c.obj (.text:scalbn)
-                  000068f0    00000110                                   : strtoul.c.obj (.text:strtoul)
-                  00006a00    000000fc                                   : fd_mul_t2.asm.obj (.text)
-                  00006afc    000000b1                                   : _printfi.c.obj (.text:_ltostr)
-                  00006bad    00000001     --HOLE-- [fill = 0]
-                  00006bae    0000009c                                   : memcpy_t2.asm.obj (.text)
-                  00006c4a    00000096                                   : ull_div_t2.asm.obj (.text)
-                  00006ce0    00000086                                   : fd_cmp_t2.asm.obj (.text:__aeabi_cdcmple)
-                  00006d66    00000086                                   : fd_cmp_t2.asm.obj (.text:__aeabi_cdrcmple)
-                  00006dec    00000084     eeprom.obj (.text)
-                  00006e70    0000007a     rtsv7M4_T_le_v4SPD16_eabi.lib : memset_t2.asm.obj (.text)
-                  00006eea    0000006e                                   : _printfi.c.obj (.text:_mcpy)
-                  00006f58    0000006e                                   : fd_tos_t2.asm.obj (.text)
-                  00006fc6    00000002     --HOLE-- [fill = 0]
-                  00006fc8    00000068                                   : sscanf.c.obj (.text:_chkmbc)
-                  00007030    00000068                                   : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
-                  00007098    00000064                                   : s_frexp.c.obj (.text:frexp)
-                  000070fc    00000056                                   : _printfi.c.obj (.text:_pconv_f)
-                  00007152    00000054                                   : _ltoa.c.obj (.text:__TI_ltoa)
-                  000071a6    00000052                                   : _printfi.c.obj (.text:_ecpy)
-                  000071f8    0000004c                                   : atoi.c.obj (.text:atoi)
-                  00007244    0000004c                                   : snprintf.c.obj (.text:snprintf)
-                  00007290    00000048                                   : fd_toi_t2.asm.obj (.text)
-                  000072d8    00000044                                   : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit:__TI_auto_init_nobinit_nopinit)
-                  0000731c    00000040                                   : strtok.c.obj (.text:strtok)
-                  0000735c    0000003e                                   : _printfi.c.obj (.text:_fcpy)
-                  0000739a    00000002     --HOLE-- [fill = 0]
-                  0000739c    00000038                                   : sscanf.c.obj (.text:sscanf)
-                  000073d4    00000034                                   : boot_cortex_m.c.obj (.text:_c_int00_noargs:_c_int00_noargs)
-                  00007408    00000030                                   : snprintf.c.obj (.text:_outs)
-                  00007438    0000002e                                   : i_tofd_t2.asm.obj (.text)
-                  00007466    0000002a                                   : strspn.c.obj (.text:strspn)
-                  00007490    00000024                                   : memcmp.c.obj (.text:memcmp)
-                  000074b4    00000024                                   : strcspn.c.obj (.text:strcspn)
-                  000074d8    00000024     wait.obj (.text)
-                  000074fc    0000001c     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init_nomemset:__TI_zero_init_nomemset)
-                  00007518    0000001c                                   : memccpy.c.obj (.text:memccpy)
-                  00007534    0000001a                                   : s_copysign.c.obj (.text:copysign)
-                  0000754e    00000018                                   : snprintf.c.obj (.text:_outc)
-                  00007566    00000018                                   : ll_mul_t2.asm.obj (.text)
-                  0000757e    00000018                                   : strcmp.c.obj (.text:strcmp)
-                  00007596    00000018                                   : strrchr.c.obj (.text:strrchr)
-                  000075ae    00000016                                   : strchr.c.obj (.text:strchr)
-                  000075c4    00000014                                   : strcpy.c.obj (.text:strcpy)
-                  000075d8    00000014                                   : strlen.c.obj (.text:strlen)
-                  000075ec    00000012                                   : sscanf.c.obj (.text:_inpchar)
-                  000075fe    00000012                                   : wcslen.c.obj (.text:wcslen)
-                  00007610    00000010     clock.obj (.text)
-                  00007620    00000010     rtsv7M4_T_le_v4SPD16_eabi.lib : tolower.c.obj (.text:tolower)
-                  00007630    0000000e                                   : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
-                  0000763e    0000000c     tm4c123gh6pm_startup_ccs.obj (.text)
-                  0000764a    00000002     --HOLE-- [fill = 0]
-                  0000764c    00000008     rtsv7M4_T_le_v4SPD16_eabi.lib : errno.c.obj (.text:__aeabi_errno_addr)
-                  00007654    00000008                                   : sscanf.c.obj (.text:_uninpchar)
-                  0000765c    00000004                                   : pre_init.c.obj (.text:_system_pre_init)
-                  00007660    00000004                                   : exit.c.obj (.text:abort:abort)
+.text      0    0000026c    00008d24     
+                  0000026c    00000eb8     bme680.obj (.text)
+                  00001124    00000d3c     tcp.obj (.text)
+                  00001e60    00000c44     ethernet.obj (.text)
+                  00002aa4    00000b14     rtsv7M4_T_le_v4SPD16_eabi.lib : _scanfi.c.obj (.text:__TI_scanfi)
+                  000035b8    00000a4e                                   : _printfi.c.obj (.text:__TI_printfi)
+                  00004006    00000002                                   : div0.asm.obj (.text)
+                  00004008    00000808     gpio.obj (.text)
+                  00004810    00000714     eth0.obj (.text)
+                  00004f24    0000058c     rtsv7M4_T_le_v4SPD16_eabi.lib : e_powf.c.obj (.text:powf)
+                  000054b0    000004bc     mqtt.obj (.text)
+                  0000596c    000004b0     ip.obj (.text)
+                  00005e1c    00000460     rtsv7M4_T_le_v4SPD16_eabi.lib : strtod.c.obj (.text:strtod)
+                  0000627c    00000338     timer.obj (.text)
+                  000065b4    000002f8     socket.obj (.text)
+                  000068ac    000002f4     arp.obj (.text)
+                  00006ba0    00000270     rtsv7M4_T_le_v4SPD16_eabi.lib : _printfi.c.obj (.text:_pconv_a)
+                  00006e10    000001dc                                   : strtoll.c.obj (.text:strtoll)
+                  00006fec    000001d0                                   : _printfi.c.obj (.text:_pconv_g)
+                  000071bc    000001b6                                   : fd_add_t2.asm.obj (.text)
+                  00007372    00000002     --HOLE-- [fill = 0]
+                  00007374    00000174     I2C3.obj (.text)
+                  000074e8    00000160     icmp.obj (.text)
+                  00007648    00000160     spi0.obj (.text)
+                  000077a8    0000015c     rtsv7M4_T_le_v4SPD16_eabi.lib : strtoull.c.obj (.text:strtoull)
+                  00007904    0000013c                                   : _printfi.c.obj (.text:_pconv_e)
+                  00007a40    00000136                                   : fd_div_t2.asm.obj (.text)
+                  00007b76    00000002     --HOLE-- [fill = 0]
+                  00007b78    00000130                                   : strtol.c.obj (.text:strtol)
+                  00007ca8    00000128     uart0.obj (.text)
+                  00007dd0    00000124     rtsv7M4_T_le_v4SPD16_eabi.lib : _printfi.c.obj (.text:fcvt)
+                  00007ef4    00000110                                   : s_scalbn.c.obj (.text:scalbn)
+                  00008004    00000110                                   : strtoul.c.obj (.text:strtoul)
+                  00008114    000000fc                                   : fd_mul_t2.asm.obj (.text)
+                  00008210    000000d0                                   : s_scalbnf.c.obj (.text:scalbnf)
+                  000082e0    000000b1                                   : _printfi.c.obj (.text:_ltostr)
+                  00008391    00000001     --HOLE-- [fill = 0]
+                  00008392    0000009c                                   : memcpy_t2.asm.obj (.text)
+                  0000842e    00000096                                   : ull_div_t2.asm.obj (.text)
+                  000084c4    00000086                                   : fd_cmp_t2.asm.obj (.text:__aeabi_cdcmple)
+                  0000854a    00000086                                   : fd_cmp_t2.asm.obj (.text:__aeabi_cdrcmple)
+                  000085d0    00000084     eeprom.obj (.text)
+                  00008654    0000007a     rtsv7M4_T_le_v4SPD16_eabi.lib : memset_t2.asm.obj (.text)
+                  000086ce    0000006e                                   : _printfi.c.obj (.text:_mcpy)
+                  0000873c    0000006e                                   : fd_tos_t2.asm.obj (.text)
+                  000087aa    0000006e                                   : ll_div_t2.asm.obj (.text)
+                  00008818    00000068                                   : sscanf.c.obj (.text:_chkmbc)
+                  00008880    00000068                                   : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
+                  000088e8    00000064                                   : s_frexp.c.obj (.text:frexp)
+                  0000894c    00000056                                   : _printfi.c.obj (.text:_pconv_f)
+                  000089a2    00000054                                   : _ltoa.c.obj (.text:__TI_ltoa)
+                  000089f6    00000052                                   : _printfi.c.obj (.text:_ecpy)
+                  00008a48    0000004c                                   : atoi.c.obj (.text:atoi)
+                  00008a94    0000004c                                   : snprintf.c.obj (.text:snprintf)
+                  00008ae0    00000048                                   : fd_toi_t2.asm.obj (.text)
+                  00008b28    00000044                                   : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit:__TI_auto_init_nobinit_nopinit)
+                  00008b6c    00000044                                   : fd_tou_t2.asm.obj (.text)
+                  00008bb0    00000040                                   : strtok.c.obj (.text:strtok)
+                  00008bf0    0000003e                                   : _printfi.c.obj (.text:_fcpy)
+                  00008c2e    00000038                                   : fs_tod_t2.asm.obj (.text)
+                  00008c66    00000002     --HOLE-- [fill = 0]
+                  00008c68    00000038                                   : sscanf.c.obj (.text:sscanf)
+                  00008ca0    00000034                                   : boot_cortex_m.c.obj (.text:_c_int00_noargs:_c_int00_noargs)
+                  00008cd4    00000030                                   : snprintf.c.obj (.text:_outs)
+                  00008d04    0000002e                                   : i_tofd_t2.asm.obj (.text)
+                  00008d32    0000002a                                   : strspn.c.obj (.text:strspn)
+                  00008d5c    00000028                                   : e_sqrtf.c.obj (.text:sqrtf)
+                  00008d84    00000024                                   : memcmp.c.obj (.text:memcmp)
+                  00008da8    00000024                                   : strcspn.c.obj (.text:strcspn)
+                  00008dcc    00000024     wait.obj (.text)
+                  00008df0    00000020     rtsv7M4_T_le_v4SPD16_eabi.lib : u_tofd_t2.asm.obj (.text)
+                  00008e10    0000001c                                   : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init_nomemset:__TI_zero_init_nomemset)
+                  00008e2c    0000001c                                   : memccpy.c.obj (.text:memccpy)
+                  00008e48    0000001a                                   : s_copysign.c.obj (.text:copysign)
+                  00008e62    00000018                                   : snprintf.c.obj (.text:_outc)
+                  00008e7a    00000018                                   : s_copysignf.c.obj (.text:copysignf)
+                  00008e92    00000018                                   : ll_mul_t2.asm.obj (.text)
+                  00008eaa    00000018                                   : strcmp.c.obj (.text:strcmp)
+                  00008ec2    00000018                                   : strrchr.c.obj (.text:strrchr)
+                  00008eda    00000016                                   : strchr.c.obj (.text:strchr)
+                  00008ef0    00000014                                   : strcpy.c.obj (.text:strcpy)
+                  00008f04    00000014                                   : strlen.c.obj (.text:strlen)
+                  00008f18    00000012                                   : sscanf.c.obj (.text:_inpchar)
+                  00008f2a    00000012                                   : wcslen.c.obj (.text:wcslen)
+                  00008f3c    00000010     clock.obj (.text)
+                  00008f4c    00000010     rtsv7M4_T_le_v4SPD16_eabi.lib : tolower.c.obj (.text:tolower)
+                  00008f5c    0000000e                                   : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
+                  00008f6a    0000000c     tm4c123gh6pm_startup_ccs.obj (.text)
+                  00008f76    00000002     --HOLE-- [fill = 0]
+                  00008f78    00000008     rtsv7M4_T_le_v4SPD16_eabi.lib : errno.c.obj (.text:__aeabi_errno_addr)
+                  00008f80    00000008                                   : sscanf.c.obj (.text:_uninpchar)
+                  00008f88    00000004                                   : pre_init.c.obj (.text:_system_pre_init)
+                  00008f8c    00000004                                   : exit.c.obj (.text:abort:abort)
 
-.const     0    00007668    000001f9     
-                  00007668    00000101     rtsv7M4_T_le_v4SPD16_eabi.lib : ctype.c.obj (.const:.string:_ctypes_)
-                  00007769    00000007     tcp.obj (.const:.string:$P$T0$1)
-                  00007770    000000c8     rtsv7M4_T_le_v4SPD16_eabi.lib : strtod.c.obj (.const:$O1$$)
-                  00007838    00000010                                   : _scanfi.c.obj (.const:$O1$$)
-                  00007848    0000000b     mqtt.obj (.const:.string:$P$T0$1)
-                  00007853    00000007     tcp.obj (.const:.string:$P$T3$4)
-                  0000785a    00000004     tcp.obj (.const:.string:$P$T2$3)
-                  0000785e    00000003     tcp.obj (.const:.string:$P$T1$2)
+.const     0    00008f90    0000029b     
+                  00008f90    00000101     rtsv7M4_T_le_v4SPD16_eabi.lib : ctype.c.obj (.const:.string:_ctypes_)
+                  00009091    00000007     tcp.obj (.const:.string:$P$T0$1)
+                  00009098    000000c8     rtsv7M4_T_le_v4SPD16_eabi.lib : strtod.c.obj (.const:$O1$$)
+                  00009160    00000040     bme680.obj (.const:$P$T0$1)
+                  000091a0    00000040     bme680.obj (.const:$P$T1$2)
+                  000091e0    00000018     rtsv7M4_T_le_v4SPD16_eabi.lib : e_powf.c.obj (.const:$O1$$)
+                  000091f8    00000010                                   : _scanfi.c.obj (.const:$O1$$)
+                  00009208    0000000b     mqtt.obj (.const:.string:$P$T0$1)
+                  00009213    0000000a     tcp.obj (.const:.string:$P$T1$2)
+                  0000921d    00000007     tcp.obj (.const:.string:$P$T4$5)
+                  00009224    00000004     tcp.obj (.const:.string:$P$T3$4)
+                  00009228    00000003     tcp.obj (.const:.string:$P$T2$3)
 
-.cinit     0    00007868    00000038     
-                  00007868    00000010     (.cinit..data.load) [load image, compression = lzss]
-                  00007878    0000000c     (__TI_handler_table)
-                  00007884    00000004     --HOLE-- [fill = 0]
-                  00007888    00000008     (.cinit..bss.load) [load image, compression = zero_init]
-                  00007890    00000010     (__TI_cinit_table)
+.cinit     0    00009230    00000048     
+                  00009230    0000001d     (.cinit..data.load) [load image, compression = lzss]
+                  0000924d    00000003     --HOLE-- [fill = 0]
+                  00009250    0000000c     (__TI_handler_table)
+                  0000925c    00000004     --HOLE-- [fill = 0]
+                  00009260    00000008     (.cinit..bss.load) [load image, compression = zero_init]
+                  00009268    00000010     (__TI_cinit_table)
 
 .init_array 
 *          0    00000000    00000000     UNINITIALIZED
 
-.bss       0    20001000    00000251     UNINITIALIZED
+.bss       0    20001000    000002b5     UNINITIALIZED
                   20001000    00000168     (.common:sockets)
                   20001168    00000054     (.common:strInput)
-                  200011bc    00000028     (.common:fn)
-                  200011e4    00000028     (.common:period)
-                  2000120c    00000028     (.common:ticks)
-                  20001234    0000000c     (.common:reload)
-                  20001240    00000008     (.common:tcpPorts)
-                  20001248    00000004     (.common:tcpState)
-                  2000124c    00000004     (.common:token)
-                  20001250    00000001     (.common:KEEP_ALIVE)
+                  200011bc    00000028     (.common:bmeCalSpace)
+                  200011e4    00000028     (.common:fn)
+                  2000120c    00000028     (.common:period)
+                  20001234    00000028     (.common:ticks)
+                  2000125c    00000014     (.common:bmeDataSpace)
+                  20001270    00000014     (.common:bmeSpace)
+                  20001284    00000014     (.common:sub_list)
+                  20001298    0000000c     (.common:reload)
+                  200012a4    00000008     (.common:tcpPorts)
+                  200012ac    00000004     (.common:tcpState)
+                  200012b0    00000004     (.common:token)
+                  200012b4    00000001     (.common:KEEP_ALIVE)
 
-.data      0    20001254    0000002f     UNINITIALIZED
-                  20001254    00000006     eth0.obj (.data:hwAddress)
-                  2000125a    00000004     ethernet.obj (.data)
-                  2000125e    00000004     ip.obj (.data:ipAddress)
-                  20001262    00000004     ip.obj (.data:ipDnsAddress)
-                  20001266    00000004     ip.obj (.data:ipGwAddress)
-                  2000126a    00000004     ip.obj (.data:ipMqttBrokerAddress)
-                  2000126e    00000004     ip.obj (.data:ipSubnetMask)
-                  20001272    00000004     ip.obj (.data:ipTimeServerAddress)
-                  20001276    00000001     tcp.obj (.data)
-                  20001277    00000001     --HOLE--
-                  20001278    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : errno.c.obj (.data)
-                  2000127c    00000004                                   : strtok.c.obj (.data)
-                  20001280    00000003     eth0.obj (.data)
+.data      0    200012b8    0000003c     UNINITIALIZED
+                  200012b8    0000000c     bme680.obj (.data)
+                  200012c4    00000006     eth0.obj (.data:hwAddress)
+                  200012ca    00000005     ethernet.obj (.data)
+                  200012cf    00000004     ip.obj (.data:ipAddress)
+                  200012d3    00000004     ip.obj (.data:ipDnsAddress)
+                  200012d7    00000004     ip.obj (.data:ipGwAddress)
+                  200012db    00000004     ip.obj (.data:ipMqttBrokerAddress)
+                  200012df    00000004     ip.obj (.data:ipSubnetMask)
+                  200012e3    00000004     ip.obj (.data:ipTimeServerAddress)
+                  200012e7    00000001     mqtt.obj (.data)
+                  200012e8    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : errno.c.obj (.data)
+                  200012ec    00000004                                   : strtok.c.obj (.data)
+                  200012f0    00000003     eth0.obj (.data)
+                  200012f3    00000001     tcp.obj (.data)
 
 .stack     0    20000000    00001000     UNINITIALIZED
                   20000000    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.stack)
@@ -182,16 +201,18 @@ MODULE SUMMARY
        Module                         code    ro data   rw data
        ------                         ----    -------   -------
     ./
-       tcp.obj                        3292    21        13     
-       ethernet.obj                   3068    0         92     
+       bme680.obj                     3768    128       92     
+       tcp.obj                        3388    31        13     
+       ethernet.obj                   3140    0         93     
        gpio.obj                       2056    0         0      
        eth0.obj                       1812    0         9      
+       mqtt.obj                       1212    11        22     
        ip.obj                         1200    0         24     
        socket.obj                     760     0         360    
-       mqtt.obj                       1032    11        1      
        timer.obj                      824     0         132    
        arp.obj                        756     0         0      
        tm4c123gh6pm_startup_ccs.obj   12      620       0      
+       I2C3.obj                       372     0         0      
        icmp.obj                       352     0         0      
        spi0.obj                       352     0         0      
        uart0.obj                      296     0         0      
@@ -199,11 +220,12 @@ MODULE SUMMARY
        wait.obj                       36      0         0      
        clock.obj                      16      0         0      
     +--+------------------------------+-------+---------+---------+
-       Total:                         15996   652       631    
+       Total:                         20484   790       745    
                                                                
     /Users/sanket/CodeComposerFiles/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/lib/rtsv7M4_T_le_v4SPD16_eabi.lib
        _printfi.c.obj                 4851    0         0      
        _scanfi.c.obj                  2836    16        0      
+       e_powf.c.obj                   1420    24        0      
        strtod.c.obj                   1120    200       0      
        strtoll.c.obj                  476     0         0      
        fd_add_t2.asm.obj              438     0         0      
@@ -215,28 +237,35 @@ MODULE SUMMARY
        fd_cmp_t2.asm.obj              268     0         0      
        ctype.c.obj                    0       257       0      
        fd_mul_t2.asm.obj              252     0         0      
+       s_scalbnf.c.obj                208     0         0      
        sscanf.c.obj                   186     0         0      
        memcpy_t2.asm.obj              156     0         0      
        ull_div_t2.asm.obj             150     0         0      
        snprintf.c.obj                 148     0         0      
        memset_t2.asm.obj              122     0         0      
        fd_tos_t2.asm.obj              110     0         0      
+       ll_div_t2.asm.obj              110     0         0      
        copy_decompress_lzss.c.obj     104     0         0      
        s_frexp.c.obj                  100     0         0      
        _ltoa.c.obj                    84      0         0      
        atoi.c.obj                     76      0         0      
        fd_toi_t2.asm.obj              72      0         0      
        autoinit.c.obj                 68      0         0      
+       fd_tou_t2.asm.obj              68      0         0      
        strtok.c.obj                   64      0         4      
+       fs_tod_t2.asm.obj              56      0         0      
        boot_cortex_m.c.obj            52      0         0      
        i_tofd_t2.asm.obj              46      0         0      
        strspn.c.obj                   42      0         0      
+       e_sqrtf.c.obj                  40      0         0      
        memcmp.c.obj                   36      0         0      
        strcspn.c.obj                  36      0         0      
+       u_tofd_t2.asm.obj              32      0         0      
        copy_zero_init.c.obj           28      0         0      
        memccpy.c.obj                  28      0         0      
        s_copysign.c.obj               26      0         0      
        ll_mul_t2.asm.obj              24      0         0      
+       s_copysignf.c.obj              24      0         0      
        strcmp.c.obj                   24      0         0      
        strrchr.c.obj                  24      0         0      
        strchr.c.obj                   22      0         0      
@@ -250,24 +279,24 @@ MODULE SUMMARY
        pre_init.c.obj                 4       0         0      
        div0.asm.obj                   2       0         0      
     +--+------------------------------+-------+---------+---------+
-       Total:                         13681   473       8      
+       Total:                         15639   497       8      
                                                                
        Stack:                         0       0         4096   
-       Linker Generated:              0       52        0      
+       Linker Generated:              0       65        0      
     +--+------------------------------+-------+---------+---------+
-       Grand Total:                   29677   1177      4735   
+       Grand Total:                   36123   1352      4849   
 
 
 LINKER GENERATED COPY TABLES
 
-__TI_cinit_table @ 00007890 records: 2, size/record: 8, table size: 16
-	.data: load addr=00007868, load size=00000010 bytes, run addr=20001254, run size=0000002f bytes, compression=lzss
-	.bss: load addr=00007888, load size=00000008 bytes, run addr=20001000, run size=00000251 bytes, compression=zero_init
+__TI_cinit_table @ 00009268 records: 2, size/record: 8, table size: 16
+	.data: load addr=00009230, load size=0000001d bytes, run addr=200012b8, run size=0000003c bytes, compression=lzss
+	.bss: load addr=00009260, load size=00000008 bytes, run addr=20001000, run size=000002b5 bytes, compression=zero_init
 
 
 LINKER GENERATED HANDLER TABLE
 
-__TI_handler_table @ 00007878 records: 3, size/record: 4, table size: 12
+__TI_handler_table @ 00009250 records: 3, size/record: 4, table size: 12
 	index: 0, handler: __TI_decompress_lzss
 	index: 1, handler: __TI_decompress_none
 	index: 2, handler: __TI_zero_init
@@ -277,253 +306,287 @@ GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name
 
 address   name                          
 -------   ----                          
-2000125a  ARP_SENT                      
-00007661  C$$EXIT                       
-20001250  KEEP_ALIVE                    
-2000125c  PUBLISH_MESSAGE               
-0000763f  ResetISR                      
-2000125b  SYN_NEEDED                    
+200012ca  ARP_SENT                      
+00008f8d  C$$EXIT                       
+200012b4  KEEP_ALIVE                    
+200012cd  PUBLISH_MESSAGE               
+00008f6b  ResetISR                      
+200012cb  SYN_NEEDED                    
 20001000  __STACK_END                   
 00001000  __STACK_SIZE                  
 20000200  __STACK_TOP                   
-00007890  __TI_CINIT_Base               
-000078a0  __TI_CINIT_Limit              
-00007878  __TI_Handler_Table_Base       
-00007884  __TI_Handler_Table_Limit      
-000072d9  __TI_auto_init_nobinit_nopinit
-00007031  __TI_decompress_lzss          
-00007631  __TI_decompress_none          
-00007153  __TI_ltoa                     
+00009268  __TI_CINIT_Base               
+00009278  __TI_CINIT_Limit              
+00009250  __TI_Handler_Table_Base       
+0000925c  __TI_Handler_Table_Limit      
+00008b29  __TI_auto_init_nobinit_nopinit
+00008881  __TI_decompress_lzss          
+00008f5d  __TI_decompress_none          
+000089a3  __TI_ltoa                     
 ffffffff  __TI_pprof_out_hndl           
-00002659  __TI_printfi                  
+000035b9  __TI_printfi                  
 ffffffff  __TI_prof_data_size           
 ffffffff  __TI_prof_data_start          
-00001b45  __TI_scanfi                   
+00002aa5  __TI_scanfi                   
 00000000  __TI_static_base__            
-000074fd  __TI_zero_init_nomemset       
-00006ce1  __aeabi_cdcmpeq               
-00006ce1  __aeabi_cdcmple               
-00006d67  __aeabi_cdrcmple              
-00006f59  __aeabi_d2f                   
-00007291  __aeabi_d2iz                  
-00005c27  __aeabi_dadd                  
-0000632d  __aeabi_ddiv                  
-00006a01  __aeabi_dmul                  
-00005c1d  __aeabi_dsub                  
-0000764d  __aeabi_errno_addr            
-00007439  __aeabi_i2d                   
-000030a7  __aeabi_idiv0                 
-000030a7  __aeabi_ldiv0                 
-00007567  __aeabi_lmul                  
-00006e71  __aeabi_memclr                
-00006e71  __aeabi_memclr4               
-00006e71  __aeabi_memclr8               
-00006baf  __aeabi_memcpy                
-00006baf  __aeabi_memcpy4               
-00006baf  __aeabi_memcpy8               
-00006e73  __aeabi_memset                
-00006e73  __aeabi_memset4               
-00006e73  __aeabi_memset8               
-00006c4b  __aeabi_uldivmod              
+00008e11  __TI_zero_init_nomemset       
+000084c5  __aeabi_cdcmpeq               
+000084c5  __aeabi_cdcmple               
+0000854b  __aeabi_cdrcmple              
+0000873d  __aeabi_d2f                   
+00008ae1  __aeabi_d2iz                  
+00008b6d  __aeabi_d2uiz                 
+000071c7  __aeabi_dadd                  
+00007a41  __aeabi_ddiv                  
+00008115  __aeabi_dmul                  
+000071bd  __aeabi_dsub                  
+00008f79  __aeabi_errno_addr            
+00008c2f  __aeabi_f2d                   
+00008d05  __aeabi_i2d                   
+00004007  __aeabi_idiv0                 
+00004007  __aeabi_ldiv0                 
+000087ab  __aeabi_ldivmod               
+00008e93  __aeabi_lmul                  
+00008655  __aeabi_memclr                
+00008655  __aeabi_memclr4               
+00008655  __aeabi_memclr8               
+00008393  __aeabi_memcpy                
+00008393  __aeabi_memcpy4               
+00008393  __aeabi_memcpy8               
+00008657  __aeabi_memset                
+00008657  __aeabi_memset4               
+00008657  __aeabi_memset8               
+00008df1  __aeabi_ui2d                  
+0000842f  __aeabi_uldivmod              
 ffffffff  __binit__                     
 ffffffff  __c_args__                    
 UNDEFED   __mpu_init                    
 20000000  __stack                       
 20000000  __start___llvm_prf_cnts       
 20000000  __stop___llvm_prf_cnts        
-000073d5  _c_int00_noargs               
-00007668  _ctypes_                      
+00008ca1  _c_int00_noargs               
+00008f90  _ctypes_                      
 UNDEFED   _system_post_cinit            
-0000765d  _system_pre_init              
-00007661  abort                         
-000012e1  asciiToUint8                  
-000071f9  atoi                          
+00008f89  _system_pre_init              
+00008f8d  abort                         
+000021f9  asciiToUint8                  
+00008a49  atoi                          
 ffffffff  binit                         
-0000442b  calcIpChecksum                
-0000396f  clearEtherReg                 
-000036fd  clearPinInterrupt             
-000048d5  connectMqtt                   
-00007535  copysign                      
-00007535  copysignl                     
-2000125d  count                         
-000050b7  deleteSocket                  
-000038c7  disableEtherCs                
-000036d9  disablePinInterrupt           
-00003411  disablePinPulldown            
-000033c9  disablePinPullup              
-00003165  disablePort                   
-00004a13  disconnectMqtt                
-00000f9b  displayConnectionInfo         
-000038b1  enableEtherCs                 
-000036b5  enablePinInterrupt            
-000033ed  enablePinPulldown             
-0000339b  enablePinPullup               
-000030a9  enablePort                    
-20001278  errno                         
-200011bc  fn                            
-00007099  frexp                         
-00007099  frexpl                        
+200012c0  bmeCal                        
+200011bc  bmeCalSpace                   
+200012bc  bmeData                       
+2000125c  bmeDataSpace                  
+200012b8  bmeRaw                        
+20001270  bmeSpace                      
+00005dd3  calcIpChecksum                
+00000685  calculateAQI                  
+000005c1  calculateGasResistance        
+000004bf  calculateHumidity             
+000002dd  calculatePress                
+0000026d  calculateTemp                 
+000048cf  clearEtherReg                 
+0000465d  clearPinInterrupt             
+000054b1  connectMqtt                   
+00008e49  copysign                      
+00008e7b  copysignf                     
+00008e49  copysignl                     
+200012ce  count                         
+00006657  deleteSocket                  
+00004827  disableEtherCs                
+00004639  disablePinInterrupt           
+00004371  disablePinPulldown            
+00004329  disablePinPullup              
+000040c5  disablePort                   
+00005603  disconnectMqtt                
+00001eb3  displayConnectionInfo         
+00004811  enableEtherCs                 
+00004615  enablePinInterrupt            
+0000434d  enablePinPulldown             
+000042fb  enablePinPullup               
+00004009  enablePort                    
+200012e8  errno                         
+200011e4  fn                            
+000088e9  frexp                         
+000088e9  frexpl                        
 00000000  g_pfnVectors                  
-00003ecb  getEtherId                    
-00003f65  getEtherMacAddress            
-00003ca5  getEtherPacket                
-000040f5  getIpAddress                  
-000043f9  getIpChecksum                 
-00004251  getIpDnsAddress               
-000041dd  getIpGatewayAddress           
-0000433d  getIpMqttBrokerAddress        
-00004169  getIpSubnetMask               
-000042c5  getIpTimeServerAddress        
-0000376b  getPinValue                   
-00003821  getPortValue                  
-000052eb  getSocket                     
-0000511f  getSocketInfoFromArpResponse  
-00005241  getSocketInfoFromTcpPacket    
-00005197  getSocketInfoFromUdpPacket    
-00000289  getTcpState                   
-0000666b  getcUart0                     
-00003e9f  htonl                         
-00003e7b  htons                         
-20001254  hwAddress                     
-00003ed7  incEtherId                    
-00006ded  initEeprom                    
-00003abb  initEther                     
-00000f51  initHw                        
-00005015  initSockets                   
-00005f35  initSpi0                      
-00007611  initSystemClockTo40Mhz        
-00004cdd  initTimer                     
-00006595  initUart0                     
-2000125e  ipAddress                     
-20001262  ipDnsAddress                  
-20001266  ipGwAddress                   
-2000126a  ipMqttBrokerAddress           
-2000126e  ipSubnetMask                  
-20001272  ipTimeServerAddress           
-0000530d  isArpRequest                  
-000053b1  isArpResponse                 
-00003c5b  isEtherDataAvailable          
-00004095  isEtherIpValid                
-00003c41  isEtherLinkUp                 
-00003c75  isEtherOverflow               
-00003fc5  isIp                          
-00004035  isIpUnicast                   
-00005dd3  isPingRequest                 
-0000029d  isTcp                         
-000003af  isTcpAck                      
-00000b99  isTcpPortOpen                 
-00000363  isTcpSyn                      
-0000667f  kbhitUart0                    
-000067e1  ldexp                         
-000067e1  ldexpl                        
-00001879  main                          
-00007519  memccpy                       
-00007491  memcmp                        
-00006baf  memcpy                        
-00006e79  memset                        
-00004cab  mqttPing                      
-0000504d  newSocket                     
-20001280  nextPacketLsb                 
-20001281  nextPacketMsb                 
-200011e4  period                        
-0000138b  processShell                  
-00000a91  processTcpArpResponse         
-000007bd  processTcpResponse            
-00000f49  publishMessageCallback        
-00004a71  publishMqtt                   
-00003d95  putEtherPacket                
-00006623  putcUart0                     
-0000663f  putsUart0                     
-00004fd7  random32                      
-0000122d  readConfiguration             
-00006e35  readEeprom                    
-00003aa3  readEtherMem                  
-000039f7  readEtherPhy                  
-00003909  readEtherReg                  
-0000606d  readSpi0Data                  
-20001234  reload                        
-00004eef  restartTimer                  
-000067e1  scalbn                        
-000067e1  scalbnl                       
-000032cf  selectPinAnalogInput          
-00003281  selectPinDigitalInput         
-000035eb  selectPinInterruptBothEdges   
-0000359b  selectPinInterruptFallingEdge 
-00003641  selectPinInterruptHighLevel   
-0000367b  selectPinInterruptLowLevel    
-0000354b  selectPinInterruptRisingEdge  
-00003233  selectPinOpenDrainOutput      
-000031e5  selectPinPushPullOutput       
-000054e3  sendArpRequest                
-00005405  sendArpResponse               
-00005e17  sendPingRequest               
-00005e23  sendPingResponse              
-00000c45  sendTcpMessage                
-00000401  sendTcpPendingMessages        
-00000c15  sendTcpResponse               
-20001282  sequenceId                    
-000039a3  setEtherBank                  
-00003ee1  setEtherMacAddress            
-0000393b  setEtherReg                   
-000040bb  setIpAddress                  
-00004217  setIpDnsAddress               
-000041a3  setIpGatewayAddress           
-000042ff  setIpMqttBrokerAddress        
-0000412f  setIpSubnetMask               
-0000428b  setIpTimeServerAddress        
-00003439  setPinAuxFunction             
-0000331f  setPinCommitControl           
-00003721  setPinValue                   
-000037a9  setPortValue                  
-00005fd1  setSpi0BaudRate               
-00006007  setSpi0Mode                   
-00000b4b  setTcpPortList                
-0000026d  setTcpState                   
-000065df  setUart0BaudRate              
-00007245  snprintf                      
+00001029  getBmeCalData                 
+00001023  getBmeData                    
+0000101d  getBmeDataRaw                 
+00004e2b  getEtherId                    
+00004ec5  getEtherMacAddress            
+00004c05  getEtherPacket                
+00005a9d  getIpAddress                  
+00005da1  getIpChecksum                 
+00005bf9  getIpDnsAddress               
+00005b85  getIpGatewayAddress           
+00005ce5  getIpMqttBrokerAddress        
+00005b11  getIpSubnetMask               
+00005c6d  getIpTimeServerAddress        
+000046cb  getPinValue                   
+00004781  getPortValue                  
+0000688b  getSocket                     
+000066bf  getSocketInfoFromArpResponse  
+000067e1  getSocketInfoFromTcpPacket    
+00006737  getSocketInfoFromUdpPacket    
+00001141  getTcpState                   
+00007d7f  getcUart0                     
+00004dff  htonl                         
+00004ddb  htons                         
+200012c4  hwAddress                     
+00004e37  incEtherId                    
+000085d1  initEeprom                    
+00004a1b  initEther                     
+00001e69  initHw                        
+00007375  initI2C3                      
+000065b5  initSockets                   
+00007649  initSpi0                      
+00008f3d  initSystemClockTo40Mhz        
+0000627d  initTimer                     
+00007ca9  initUart0                     
+200012cf  ipAddress                     
+200012d3  ipDnsAddress                  
+200012d7  ipGwAddress                   
+200012db  ipMqttBrokerAddress           
+200012df  ipSubnetMask                  
+200012e3  ipTimeServerAddress           
+000068ad  isArpRequest                  
+00006951  isArpResponse                 
+00004bbb  isEtherDataAvailable          
+00005a3d  isEtherIpValid                
+00004ba1  isEtherLinkUp                 
+00004bd5  isEtherOverflow               
+0000596d  isIp                          
+000059dd  isIpUnicast                   
+000074e9  isPingRequest                 
+00001155  isTcp                         
+00001267  isTcpAck                      
+00001ab5  isTcpPortOpen                 
+0000121b  isTcpSyn                      
+00007d93  kbhitUart0                    
+00007ef5  ldexp                         
+00008211  ldexpf                        
+00007ef5  ldexpl                        
+000027b9  main                          
+00008e2d  memccpy                       
+00008d85  memcmp                        
+00008393  memcpy                        
+0000865d  memset                        
+00005931  mqttPing                      
+000065ed  newSocket                     
+200012f0  nextPacketLsb                 
+200012f1  nextPacketMsb                 
+2000120c  period                        
+00004f25  powf                          
+200012cc  printAirData                  
+00000ee9  printData                     
+000022a3  processShell                  
+000019af  processTcpArpResponse         
+000016c1  processTcpResponse            
+00001e61  publishMessageCallback        
+00005661  publishMqtt                   
+00004cf5  putEtherPacket                
+00007d37  putcUart0                     
+00007d53  putsUart0                     
+00006577  random32                      
+00000bfd  readBmeCalibrationData        
+000009c9  readBmeRaw                    
+00002145  readConfiguration             
+0000744f  readDataFromRegI2C3           
+00008619  readEeprom                    
+00004a03  readEtherMem                  
+00004957  readEtherPhy                  
+00004869  readEtherReg                  
+00007781  readSpi0Data                  
+20001298  reload                        
+0000648f  restartTimer                  
+00007ef5  scalbn                        
+00008211  scalbnf                       
+00007ef5  scalbnl                       
+0000422f  selectPinAnalogInput          
+000041e1  selectPinDigitalInput         
+0000454b  selectPinInterruptBothEdges   
+000044fb  selectPinInterruptFallingEdge 
+000045a1  selectPinInterruptHighLevel   
+000045db  selectPinInterruptLowLevel    
+000044ab  selectPinInterruptRisingEdge  
+00004193  selectPinOpenDrainOutput      
+00004145  selectPinPushPullOutput       
+00006a83  sendArpRequest                
+000069a5  sendArpResponse               
+0000752d  sendPingRequest               
+00007539  sendPingResponse              
+00001b65  sendTcpMessage                
+000012b9  sendTcpPendingMessages        
+00001b35  sendTcpResponse               
+200012f2  sequenceId                    
+00004903  setEtherBank                  
+00004e41  setEtherMacAddress            
+0000489b  setEtherReg                   
+00005a63  setIpAddress                  
+00005bbf  setIpDnsAddress               
+00005b4b  setIpGatewayAddress           
+00005ca7  setIpMqttBrokerAddress        
+00005ad7  setIpSubnetMask               
+00005c33  setIpTimeServerAddress        
+00004399  setPinAuxFunction             
+0000427f  setPinCommitControl           
+00004681  setPinValue                   
+00004709  setPortValue                  
+000076e5  setSpi0BaudRate               
+0000771b  setSpi0Mode                   
+00001a69  setTcpPortList                
+00001125  setTcpState                   
+00007cf3  setUart0BaudRate              
+00008a95  snprintf                      
 20001000  sockets                       
-0000739d  sscanf                        
-00003a91  startEtherMemRead             
-00003a63  startEtherMemWrite            
-00004d7d  startOneshotTimer             
-00004e03  startPeriodicTimer            
-00003ab3  stopEtherMemRead              
-00003a89  stopEtherMemWrite             
-00004e89  stopTimer                     
+00008d5d  sqrtf                         
+00008c69  sscanf                        
+000049f1  startEtherMemRead             
+000049c3  startEtherMemWrite            
+0000631d  startOneshotTimer             
+000063a3  startPeriodicTimer            
+00000765  startbme                      
+00004a13  stopEtherMemRead              
+000049e9  stopEtherMemWrite             
+00006429  stopTimer                     
 20001168  strInput                      
-000075af  strchr                        
-0000757f  strcmp                        
-000075c5  strcpy                        
-000074b5  strcspn                       
-000075d9  strlen                        
-00007597  strrchr                       
-00007467  strspn                        
-00004475  strtod                        
-0000731d  strtok                        
-00006465  strtol                        
-00004475  strtold                       
-00005871  strtoll                       
-000068f1  strtoul                       
-00006095  strtoull                      
-00004b4f  subscribeMqtt                 
-00004385  sumIpWords                    
-20001276  tcpPortCount                  
-20001240  tcpPorts                      
-20001248  tcpState                      
-00000eff  tcpSynTimeout                 
-00004f5d  tickIsr                       
-2000120c  ticks                         
-00003747  togglePinValue                
-2000124c  token                         
-00007621  tolower                       
-00004c1d  unsubscribeMqtt               
-000074d9  waitMicrosecond               
-000075ff  wcslen                        
-00006e03  writeEeprom                   
-00003a75  writeEtherMem                 
-000039bf  writeEtherPhy                 
-000038d5  writeEtherReg                 
-00006055  writeSpi0Data                 
+00008edb  strchr                        
+00008eab  strcmp                        
+00008ef1  strcpy                        
+00008da9  strcspn                       
+00008f05  strlen                        
+00008ec3  strrchr                       
+00008d33  strspn                        
+00005e1d  strtod                        
+00008bb1  strtok                        
+00007b79  strtol                        
+00005e1d  strtold                       
+00006e11  strtoll                       
+00008005  strtoul                       
+000077a9  strtoull                      
+200012e7  sub_count                     
+20001284  sub_list                      
+0000574d  subscribeMqtt                 
+00005d2d  sumIpWords                    
+200012f3  tcpPortCount                  
+200012a4  tcpPorts                      
+200012ac  tcpState                      
+00001e19  tcpSynTimeout                 
+000064fd  tickIsr                       
+20001234  ticks                         
+000046a7  togglePinValue                
+200012b0  token                         
+00008f4d  tolower                       
+00005829  unsubscribeMqtt               
+00000b71  updateBmeData                 
+00008dcd  waitMicrosecond               
+00008f2b  wcslen                        
+000073f9  writeDatatoRegI2C3            
+000085e7  writeEeprom                   
+000049d5  writeEtherMem                 
+0000491f  writeEtherPhy                 
+00004835  writeEtherReg                 
+00007769  writeSpi0Data                 
 
 
 GLOBAL SYMBOLS: SORTED BY Symbol Address 
@@ -532,212 +595,237 @@ address   name
 -------   ----                          
 00000000  __TI_static_base__            
 00000000  g_pfnVectors                  
-0000026d  setTcpState                   
-00000289  getTcpState                   
-0000029d  isTcp                         
-00000363  isTcpSyn                      
-000003af  isTcpAck                      
-00000401  sendTcpPendingMessages        
-000007bd  processTcpResponse            
-00000a91  processTcpArpResponse         
-00000b4b  setTcpPortList                
-00000b99  isTcpPortOpen                 
-00000c15  sendTcpResponse               
-00000c45  sendTcpMessage                
-00000eff  tcpSynTimeout                 
-00000f49  publishMessageCallback        
-00000f51  initHw                        
-00000f9b  displayConnectionInfo         
+0000026d  calculateTemp                 
+000002dd  calculatePress                
+000004bf  calculateHumidity             
+000005c1  calculateGasResistance        
+00000685  calculateAQI                  
+00000765  startbme                      
+000009c9  readBmeRaw                    
+00000b71  updateBmeData                 
+00000bfd  readBmeCalibrationData        
+00000ee9  printData                     
 00001000  __STACK_SIZE                  
-0000122d  readConfiguration             
-000012e1  asciiToUint8                  
-0000138b  processShell                  
-00001879  main                          
-00001b45  __TI_scanfi                   
-00002659  __TI_printfi                  
-000030a7  __aeabi_idiv0                 
-000030a7  __aeabi_ldiv0                 
-000030a9  enablePort                    
-00003165  disablePort                   
-000031e5  selectPinPushPullOutput       
-00003233  selectPinOpenDrainOutput      
-00003281  selectPinDigitalInput         
-000032cf  selectPinAnalogInput          
-0000331f  setPinCommitControl           
-0000339b  enablePinPullup               
-000033c9  disablePinPullup              
-000033ed  enablePinPulldown             
-00003411  disablePinPulldown            
-00003439  setPinAuxFunction             
-0000354b  selectPinInterruptRisingEdge  
-0000359b  selectPinInterruptFallingEdge 
-000035eb  selectPinInterruptBothEdges   
-00003641  selectPinInterruptHighLevel   
-0000367b  selectPinInterruptLowLevel    
-000036b5  enablePinInterrupt            
-000036d9  disablePinInterrupt           
-000036fd  clearPinInterrupt             
-00003721  setPinValue                   
-00003747  togglePinValue                
-0000376b  getPinValue                   
-000037a9  setPortValue                  
-00003821  getPortValue                  
-000038b1  enableEtherCs                 
-000038c7  disableEtherCs                
-000038d5  writeEtherReg                 
-00003909  readEtherReg                  
-0000393b  setEtherReg                   
-0000396f  clearEtherReg                 
-000039a3  setEtherBank                  
-000039bf  writeEtherPhy                 
-000039f7  readEtherPhy                  
-00003a63  startEtherMemWrite            
-00003a75  writeEtherMem                 
-00003a89  stopEtherMemWrite             
-00003a91  startEtherMemRead             
-00003aa3  readEtherMem                  
-00003ab3  stopEtherMemRead              
-00003abb  initEther                     
-00003c41  isEtherLinkUp                 
-00003c5b  isEtherDataAvailable          
-00003c75  isEtherOverflow               
-00003ca5  getEtherPacket                
-00003d95  putEtherPacket                
-00003e7b  htons                         
-00003e9f  htonl                         
-00003ecb  getEtherId                    
-00003ed7  incEtherId                    
-00003ee1  setEtherMacAddress            
-00003f65  getEtherMacAddress            
-00003fc5  isIp                          
-00004035  isIpUnicast                   
-00004095  isEtherIpValid                
-000040bb  setIpAddress                  
-000040f5  getIpAddress                  
-0000412f  setIpSubnetMask               
-00004169  getIpSubnetMask               
-000041a3  setIpGatewayAddress           
-000041dd  getIpGatewayAddress           
-00004217  setIpDnsAddress               
-00004251  getIpDnsAddress               
-0000428b  setIpTimeServerAddress        
-000042c5  getIpTimeServerAddress        
-000042ff  setIpMqttBrokerAddress        
-0000433d  getIpMqttBrokerAddress        
-00004385  sumIpWords                    
-000043f9  getIpChecksum                 
-0000442b  calcIpChecksum                
-00004475  strtod                        
-00004475  strtold                       
-000048d5  connectMqtt                   
-00004a13  disconnectMqtt                
-00004a71  publishMqtt                   
-00004b4f  subscribeMqtt                 
-00004c1d  unsubscribeMqtt               
-00004cab  mqttPing                      
-00004cdd  initTimer                     
-00004d7d  startOneshotTimer             
-00004e03  startPeriodicTimer            
-00004e89  stopTimer                     
-00004eef  restartTimer                  
-00004f5d  tickIsr                       
-00004fd7  random32                      
-00005015  initSockets                   
-0000504d  newSocket                     
-000050b7  deleteSocket                  
-0000511f  getSocketInfoFromArpResponse  
-00005197  getSocketInfoFromUdpPacket    
-00005241  getSocketInfoFromTcpPacket    
-000052eb  getSocket                     
-0000530d  isArpRequest                  
-000053b1  isArpResponse                 
-00005405  sendArpResponse               
-000054e3  sendArpRequest                
-00005871  strtoll                       
-00005c1d  __aeabi_dsub                  
-00005c27  __aeabi_dadd                  
-00005dd3  isPingRequest                 
-00005e17  sendPingRequest               
-00005e23  sendPingResponse              
-00005f35  initSpi0                      
-00005fd1  setSpi0BaudRate               
-00006007  setSpi0Mode                   
-00006055  writeSpi0Data                 
-0000606d  readSpi0Data                  
-00006095  strtoull                      
-0000632d  __aeabi_ddiv                  
-00006465  strtol                        
-00006595  initUart0                     
-000065df  setUart0BaudRate              
-00006623  putcUart0                     
-0000663f  putsUart0                     
-0000666b  getcUart0                     
-0000667f  kbhitUart0                    
-000067e1  ldexp                         
-000067e1  ldexpl                        
-000067e1  scalbn                        
-000067e1  scalbnl                       
-000068f1  strtoul                       
-00006a01  __aeabi_dmul                  
-00006baf  __aeabi_memcpy                
-00006baf  __aeabi_memcpy4               
-00006baf  __aeabi_memcpy8               
-00006baf  memcpy                        
-00006c4b  __aeabi_uldivmod              
-00006ce1  __aeabi_cdcmpeq               
-00006ce1  __aeabi_cdcmple               
-00006d67  __aeabi_cdrcmple              
-00006ded  initEeprom                    
-00006e03  writeEeprom                   
-00006e35  readEeprom                    
-00006e71  __aeabi_memclr                
-00006e71  __aeabi_memclr4               
-00006e71  __aeabi_memclr8               
-00006e73  __aeabi_memset                
-00006e73  __aeabi_memset4               
-00006e73  __aeabi_memset8               
-00006e79  memset                        
-00006f59  __aeabi_d2f                   
-00007031  __TI_decompress_lzss          
-00007099  frexp                         
-00007099  frexpl                        
-00007153  __TI_ltoa                     
-000071f9  atoi                          
-00007245  snprintf                      
-00007291  __aeabi_d2iz                  
-000072d9  __TI_auto_init_nobinit_nopinit
-0000731d  strtok                        
-0000739d  sscanf                        
-000073d5  _c_int00_noargs               
-00007439  __aeabi_i2d                   
-00007467  strspn                        
-00007491  memcmp                        
-000074b5  strcspn                       
-000074d9  waitMicrosecond               
-000074fd  __TI_zero_init_nomemset       
-00007519  memccpy                       
-00007535  copysign                      
-00007535  copysignl                     
-00007567  __aeabi_lmul                  
-0000757f  strcmp                        
-00007597  strrchr                       
-000075af  strchr                        
-000075c5  strcpy                        
-000075d9  strlen                        
-000075ff  wcslen                        
-00007611  initSystemClockTo40Mhz        
-00007621  tolower                       
-00007631  __TI_decompress_none          
-0000763f  ResetISR                      
-0000764d  __aeabi_errno_addr            
-0000765d  _system_pre_init              
-00007661  C$$EXIT                       
-00007661  abort                         
-00007668  _ctypes_                      
-00007878  __TI_Handler_Table_Base       
-00007884  __TI_Handler_Table_Limit      
-00007890  __TI_CINIT_Base               
-000078a0  __TI_CINIT_Limit              
+0000101d  getBmeDataRaw                 
+00001023  getBmeData                    
+00001029  getBmeCalData                 
+00001125  setTcpState                   
+00001141  getTcpState                   
+00001155  isTcp                         
+0000121b  isTcpSyn                      
+00001267  isTcpAck                      
+000012b9  sendTcpPendingMessages        
+000016c1  processTcpResponse            
+000019af  processTcpArpResponse         
+00001a69  setTcpPortList                
+00001ab5  isTcpPortOpen                 
+00001b35  sendTcpResponse               
+00001b65  sendTcpMessage                
+00001e19  tcpSynTimeout                 
+00001e61  publishMessageCallback        
+00001e69  initHw                        
+00001eb3  displayConnectionInfo         
+00002145  readConfiguration             
+000021f9  asciiToUint8                  
+000022a3  processShell                  
+000027b9  main                          
+00002aa5  __TI_scanfi                   
+000035b9  __TI_printfi                  
+00004007  __aeabi_idiv0                 
+00004007  __aeabi_ldiv0                 
+00004009  enablePort                    
+000040c5  disablePort                   
+00004145  selectPinPushPullOutput       
+00004193  selectPinOpenDrainOutput      
+000041e1  selectPinDigitalInput         
+0000422f  selectPinAnalogInput          
+0000427f  setPinCommitControl           
+000042fb  enablePinPullup               
+00004329  disablePinPullup              
+0000434d  enablePinPulldown             
+00004371  disablePinPulldown            
+00004399  setPinAuxFunction             
+000044ab  selectPinInterruptRisingEdge  
+000044fb  selectPinInterruptFallingEdge 
+0000454b  selectPinInterruptBothEdges   
+000045a1  selectPinInterruptHighLevel   
+000045db  selectPinInterruptLowLevel    
+00004615  enablePinInterrupt            
+00004639  disablePinInterrupt           
+0000465d  clearPinInterrupt             
+00004681  setPinValue                   
+000046a7  togglePinValue                
+000046cb  getPinValue                   
+00004709  setPortValue                  
+00004781  getPortValue                  
+00004811  enableEtherCs                 
+00004827  disableEtherCs                
+00004835  writeEtherReg                 
+00004869  readEtherReg                  
+0000489b  setEtherReg                   
+000048cf  clearEtherReg                 
+00004903  setEtherBank                  
+0000491f  writeEtherPhy                 
+00004957  readEtherPhy                  
+000049c3  startEtherMemWrite            
+000049d5  writeEtherMem                 
+000049e9  stopEtherMemWrite             
+000049f1  startEtherMemRead             
+00004a03  readEtherMem                  
+00004a13  stopEtherMemRead              
+00004a1b  initEther                     
+00004ba1  isEtherLinkUp                 
+00004bbb  isEtherDataAvailable          
+00004bd5  isEtherOverflow               
+00004c05  getEtherPacket                
+00004cf5  putEtherPacket                
+00004ddb  htons                         
+00004dff  htonl                         
+00004e2b  getEtherId                    
+00004e37  incEtherId                    
+00004e41  setEtherMacAddress            
+00004ec5  getEtherMacAddress            
+00004f25  powf                          
+000054b1  connectMqtt                   
+00005603  disconnectMqtt                
+00005661  publishMqtt                   
+0000574d  subscribeMqtt                 
+00005829  unsubscribeMqtt               
+00005931  mqttPing                      
+0000596d  isIp                          
+000059dd  isIpUnicast                   
+00005a3d  isEtherIpValid                
+00005a63  setIpAddress                  
+00005a9d  getIpAddress                  
+00005ad7  setIpSubnetMask               
+00005b11  getIpSubnetMask               
+00005b4b  setIpGatewayAddress           
+00005b85  getIpGatewayAddress           
+00005bbf  setIpDnsAddress               
+00005bf9  getIpDnsAddress               
+00005c33  setIpTimeServerAddress        
+00005c6d  getIpTimeServerAddress        
+00005ca7  setIpMqttBrokerAddress        
+00005ce5  getIpMqttBrokerAddress        
+00005d2d  sumIpWords                    
+00005da1  getIpChecksum                 
+00005dd3  calcIpChecksum                
+00005e1d  strtod                        
+00005e1d  strtold                       
+0000627d  initTimer                     
+0000631d  startOneshotTimer             
+000063a3  startPeriodicTimer            
+00006429  stopTimer                     
+0000648f  restartTimer                  
+000064fd  tickIsr                       
+00006577  random32                      
+000065b5  initSockets                   
+000065ed  newSocket                     
+00006657  deleteSocket                  
+000066bf  getSocketInfoFromArpResponse  
+00006737  getSocketInfoFromUdpPacket    
+000067e1  getSocketInfoFromTcpPacket    
+0000688b  getSocket                     
+000068ad  isArpRequest                  
+00006951  isArpResponse                 
+000069a5  sendArpResponse               
+00006a83  sendArpRequest                
+00006e11  strtoll                       
+000071bd  __aeabi_dsub                  
+000071c7  __aeabi_dadd                  
+00007375  initI2C3                      
+000073f9  writeDatatoRegI2C3            
+0000744f  readDataFromRegI2C3           
+000074e9  isPingRequest                 
+0000752d  sendPingRequest               
+00007539  sendPingResponse              
+00007649  initSpi0                      
+000076e5  setSpi0BaudRate               
+0000771b  setSpi0Mode                   
+00007769  writeSpi0Data                 
+00007781  readSpi0Data                  
+000077a9  strtoull                      
+00007a41  __aeabi_ddiv                  
+00007b79  strtol                        
+00007ca9  initUart0                     
+00007cf3  setUart0BaudRate              
+00007d37  putcUart0                     
+00007d53  putsUart0                     
+00007d7f  getcUart0                     
+00007d93  kbhitUart0                    
+00007ef5  ldexp                         
+00007ef5  ldexpl                        
+00007ef5  scalbn                        
+00007ef5  scalbnl                       
+00008005  strtoul                       
+00008115  __aeabi_dmul                  
+00008211  ldexpf                        
+00008211  scalbnf                       
+00008393  __aeabi_memcpy                
+00008393  __aeabi_memcpy4               
+00008393  __aeabi_memcpy8               
+00008393  memcpy                        
+0000842f  __aeabi_uldivmod              
+000084c5  __aeabi_cdcmpeq               
+000084c5  __aeabi_cdcmple               
+0000854b  __aeabi_cdrcmple              
+000085d1  initEeprom                    
+000085e7  writeEeprom                   
+00008619  readEeprom                    
+00008655  __aeabi_memclr                
+00008655  __aeabi_memclr4               
+00008655  __aeabi_memclr8               
+00008657  __aeabi_memset                
+00008657  __aeabi_memset4               
+00008657  __aeabi_memset8               
+0000865d  memset                        
+0000873d  __aeabi_d2f                   
+000087ab  __aeabi_ldivmod               
+00008881  __TI_decompress_lzss          
+000088e9  frexp                         
+000088e9  frexpl                        
+000089a3  __TI_ltoa                     
+00008a49  atoi                          
+00008a95  snprintf                      
+00008ae1  __aeabi_d2iz                  
+00008b29  __TI_auto_init_nobinit_nopinit
+00008b6d  __aeabi_d2uiz                 
+00008bb1  strtok                        
+00008c2f  __aeabi_f2d                   
+00008c69  sscanf                        
+00008ca1  _c_int00_noargs               
+00008d05  __aeabi_i2d                   
+00008d33  strspn                        
+00008d5d  sqrtf                         
+00008d85  memcmp                        
+00008da9  strcspn                       
+00008dcd  waitMicrosecond               
+00008df1  __aeabi_ui2d                  
+00008e11  __TI_zero_init_nomemset       
+00008e2d  memccpy                       
+00008e49  copysign                      
+00008e49  copysignl                     
+00008e7b  copysignf                     
+00008e93  __aeabi_lmul                  
+00008eab  strcmp                        
+00008ec3  strrchr                       
+00008edb  strchr                        
+00008ef1  strcpy                        
+00008f05  strlen                        
+00008f2b  wcslen                        
+00008f3d  initSystemClockTo40Mhz        
+00008f4d  tolower                       
+00008f5d  __TI_decompress_none          
+00008f6b  ResetISR                      
+00008f79  __aeabi_errno_addr            
+00008f89  _system_pre_init              
+00008f8d  C$$EXIT                       
+00008f8d  abort                         
+00008f90  _ctypes_                      
+00009250  __TI_Handler_Table_Base       
+0000925c  __TI_Handler_Table_Limit      
+00009268  __TI_CINIT_Base               
+00009278  __TI_CINIT_Limit              
 20000000  __stack                       
 20000000  __start___llvm_prf_cnts       
 20000000  __stop___llvm_prf_cnts        
@@ -745,30 +833,39 @@ address   name
 20001000  __STACK_END                   
 20001000  sockets                       
 20001168  strInput                      
-200011bc  fn                            
-200011e4  period                        
-2000120c  ticks                         
-20001234  reload                        
-20001240  tcpPorts                      
-20001248  tcpState                      
-2000124c  token                         
-20001250  KEEP_ALIVE                    
-20001254  hwAddress                     
-2000125a  ARP_SENT                      
-2000125b  SYN_NEEDED                    
-2000125c  PUBLISH_MESSAGE               
-2000125d  count                         
-2000125e  ipAddress                     
-20001262  ipDnsAddress                  
-20001266  ipGwAddress                   
-2000126a  ipMqttBrokerAddress           
-2000126e  ipSubnetMask                  
-20001272  ipTimeServerAddress           
-20001276  tcpPortCount                  
-20001278  errno                         
-20001280  nextPacketLsb                 
-20001281  nextPacketMsb                 
-20001282  sequenceId                    
+200011bc  bmeCalSpace                   
+200011e4  fn                            
+2000120c  period                        
+20001234  ticks                         
+2000125c  bmeDataSpace                  
+20001270  bmeSpace                      
+20001284  sub_list                      
+20001298  reload                        
+200012a4  tcpPorts                      
+200012ac  tcpState                      
+200012b0  token                         
+200012b4  KEEP_ALIVE                    
+200012b8  bmeRaw                        
+200012bc  bmeData                       
+200012c0  bmeCal                        
+200012c4  hwAddress                     
+200012ca  ARP_SENT                      
+200012cb  SYN_NEEDED                    
+200012cc  printAirData                  
+200012cd  PUBLISH_MESSAGE               
+200012ce  count                         
+200012cf  ipAddress                     
+200012d3  ipDnsAddress                  
+200012d7  ipGwAddress                   
+200012db  ipMqttBrokerAddress           
+200012df  ipSubnetMask                  
+200012e3  ipTimeServerAddress           
+200012e7  sub_count                     
+200012e8  errno                         
+200012f0  nextPacketLsb                 
+200012f1  nextPacketMsb                 
+200012f2  sequenceId                    
+200012f3  tcpPortCount                  
 ffffffff  __TI_pprof_out_hndl           
 ffffffff  __TI_prof_data_size           
 ffffffff  __TI_prof_data_start          
@@ -778,4 +875,4 @@ ffffffff  binit
 UNDEFED   __mpu_init                    
 UNDEFED   _system_post_cinit            
 
-[247 symbols]
+[281 symbols]

@@ -20,7 +20,8 @@ ethernet.obj: /Users/sanket/CodeComposerFiles/ccs/tools/compiler/ti-cgt-arm_20.2
 ethernet.obj: /Users/sanket/CodeComposerFiles/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/xlocale/_string.h
 ethernet.obj: /Users/sanket/CodeComposerFiles/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/ctype.h
 ethernet.obj: /Users/sanket/CodeComposerFiles/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/_isfuncdcl.h
-ethernet.obj: ../tm4c123gh6pm.h
+ethernet.obj: /Users/sanket/Downloads/Project2/I2C3.h
+ethernet.obj: /Users/sanket/Downloads/Project2/tm4c123gh6pm.h
 ethernet.obj: ../clock.h
 ethernet.obj: ../eeprom.h
 ethernet.obj: ../gpio.h
@@ -36,6 +37,7 @@ ethernet.obj: ../udp.h
 ethernet.obj: ../socket.h
 ethernet.obj: ../tcp.h
 ethernet.obj: ../mqtt.h
+ethernet.obj: ../bme680.h
 
 ../ethernet.c:
 
@@ -77,7 +79,9 @@ ethernet.obj: ../mqtt.h
 
 /Users/sanket/CodeComposerFiles/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/_isfuncdcl.h:
 
-../tm4c123gh6pm.h:
+/Users/sanket/Downloads/Project2/I2C3.h:
+
+/Users/sanket/Downloads/Project2/tm4c123gh6pm.h:
 
 ../clock.h:
 
@@ -108,4 +112,6 @@ ethernet.obj: ../mqtt.h
 ../tcp.h:
 
 ../mqtt.h:
+
+../bme680.h:
 

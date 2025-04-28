@@ -7,7 +7,9 @@ CMD_SRCS += \
 ../tm4c123gh6pm.cmd 
 
 C_SRCS += \
+../I2C3.c \
 ../arp.c \
+../bme680.c \
 ../clock.c \
 ../eeprom.c \
 ../eth0.c \
@@ -27,7 +29,9 @@ C_SRCS += \
 ../wait.c 
 
 C_DEPS += \
+./I2C3.d \
 ./arp.d \
+./bme680.d \
 ./clock.d \
 ./eeprom.d \
 ./eth0.d \
@@ -47,7 +51,9 @@ C_DEPS += \
 ./wait.d 
 
 OBJS += \
+./I2C3.obj \
 ./arp.obj \
+./bme680.obj \
 ./clock.obj \
 ./eeprom.obj \
 ./eth0.obj \
@@ -67,7 +73,9 @@ OBJS += \
 ./wait.obj 
 
 OBJS__QUOTED += \
+"I2C3.obj" \
 "arp.obj" \
+"bme680.obj" \
 "clock.obj" \
 "eeprom.obj" \
 "eth0.obj" \
@@ -87,7 +95,9 @@ OBJS__QUOTED += \
 "wait.obj" 
 
 C_DEPS__QUOTED += \
+"I2C3.d" \
 "arp.d" \
+"bme680.d" \
 "clock.d" \
 "eeprom.d" \
 "eth0.d" \
@@ -107,7 +117,9 @@ C_DEPS__QUOTED += \
 "wait.d" 
 
 C_SRCS__QUOTED += \
+"../I2C3.c" \
 "../arp.c" \
+"../bme680.c" \
 "../clock.c" \
 "../eeprom.c" \
 "../eth0.c" \

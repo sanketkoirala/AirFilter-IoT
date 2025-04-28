@@ -22,6 +22,7 @@ mqtt.obj: ../ip.h
 mqtt.obj: ../eth0.h
 mqtt.obj: ../socket.h
 mqtt.obj: ../timer.h
+mqtt.obj: ../uart0.h
 
 ../mqtt.c:
 
@@ -66,4 +67,6 @@ mqtt.obj: ../timer.h
 ../socket.h:
 
 ../timer.h:
+
+../uart0.h:
 

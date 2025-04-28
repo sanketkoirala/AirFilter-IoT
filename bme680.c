@@ -217,12 +217,12 @@ void readBmeRaw()
 
     uint8_t gas_msb;
     uint8_t gas_lsb;
-    if(new_data && gas_valid_0 && heat_stab_0)
-    {
+//    if(new_data && gas_valid_0 && heat_stab_0)
+//    {
         // Read gas data from 0x2A and 0x2B
         gas_msb = readDataFromRegI2C3(bme_add, 0x2A);
         gas_lsb = readDataFromRegI2C3(bme_add, 0x2B);
-    }
+//    }
     // raw values
     bmeRaw->adc_P = ((uint32_t)data[0] << 12) | ((uint32_t)data[1] << 4) | ((data[2] >> 4) & 0x0F);
     bmeRaw->adc_T = ((uint32_t)data[3] << 12) | ((uint32_t)data[4] << 4) | ((data[5] >> 4) & 0x0F);

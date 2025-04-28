@@ -458,7 +458,7 @@ int main(void)
     // Init ethernet interface (eth0)
     putsUart0("\nStarting eth0\n");
     initEther(ETHER_UNICAST | ETHER_BROADCAST | ETHER_HALFDUPLEX);
-    setEtherMacAddress(2, 3, 4, 5, 6, 109);
+    setEtherMacAddress(2, 3, 4, 5, 6, 120);
 
     // Init EEPROM
     initEeprom();
@@ -466,10 +466,10 @@ int main(void)
     startbme();
 
     //start timer added
-//    if (!startPeriodicTimer(publishMessageCallback, 240))
-//    {
-//        putsUart0("Failed to start publish timer\n");
-//    }
+    if (!startPeriodicTimer(publishMessageCallback, 10))
+    {
+        putsUart0("Failed to start publish timer\n");
+    }
 
     setPinValue(GREEN_LED, 1);
     waitMicrosecond(100000);

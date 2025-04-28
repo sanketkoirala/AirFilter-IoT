@@ -8,7 +8,9 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
+"./I2C3.obj" \
 "./arp.obj" \
+"./bme680.obj" \
 "./clock.obj" \
 "./eeprom.obj" \
 "./eth0.obj" \
@@ -156,8 +158,8 @@ Project2.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "arp.obj" "clock.obj" "eeprom.obj" "eth0.obj" "ethernet.obj" "gpio.obj" "icmp.obj" "ip.obj" "motor.obj" "mqtt.obj" "socket.obj" "spi0.obj" "tcp.obj" "timer.obj" "tm4c123gh6pm_startup_ccs.obj" "uart0.obj" "udp.obj" "wait.obj" 
-	-$(RM) "arp.d" "clock.d" "eeprom.d" "eth0.d" "ethernet.d" "gpio.d" "icmp.d" "ip.d" "motor.d" "mqtt.d" "socket.d" "spi0.d" "tcp.d" "timer.d" "tm4c123gh6pm_startup_ccs.d" "uart0.d" "udp.d" "wait.d" 
+	-$(RM) "I2C3.obj" "arp.obj" "bme680.obj" "clock.obj" "eeprom.obj" "eth0.obj" "ethernet.obj" "gpio.obj" "icmp.obj" "ip.obj" "motor.obj" "mqtt.obj" "socket.obj" "spi0.obj" "tcp.obj" "timer.obj" "tm4c123gh6pm_startup_ccs.obj" "uart0.obj" "udp.obj" "wait.obj" 
+	-$(RM) "I2C3.d" "arp.d" "bme680.d" "clock.d" "eeprom.d" "eth0.d" "ethernet.d" "gpio.d" "icmp.d" "ip.d" "motor.d" "mqtt.d" "socket.d" "spi0.d" "tcp.d" "timer.d" "tm4c123gh6pm_startup_ccs.d" "uart0.d" "udp.d" "wait.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

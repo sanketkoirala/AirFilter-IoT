@@ -1,4 +1,6 @@
+"./I2C3.obj"
 "./arp.obj"
+"./bme680.obj"
 "./clock.obj"
 "./eeprom.obj"
 "./eth0.obj"

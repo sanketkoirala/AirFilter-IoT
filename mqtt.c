@@ -52,9 +52,9 @@ void connectMqtt(etherHeader* ether)
     m->protocolNameLen = htons(4);
     m->protocolLevel = 0x04;
     m->flags = 0x02; // connect flags
-    m->keepAliveTime = htons(30);
-    KEEP_ALIVE = 30;
-    bool started = startPeriodicTimer(mqttPing, KEEP_ALIVE);
+    KEEP_ALIVE = 60;
+    m->keepAliveTime = htons(KEEP_ALIVE);
+    bool started = startPeriodicTimer(mqttPing, (int)KEEP_ALIVE*0.75);
     if(!started)
     {
         putsUart0("Failed to Start Timer\n");
@@ -65,7 +65,7 @@ void connectMqtt(etherHeader* ether)
     m->protocolName[1] = 'Q';
     m->protocolName[2] = 'T';
     m->protocolName[3] = 'T';
-    uint8_t client[] = {"client-rmd"};
+    uint8_t client[] = {"client-001"};
 
     mqttConnect* c = (mqttConnect*) m->data;
 
@@ -124,7 +124,7 @@ void publishMqtt(char strTopic[], char strData[])
     memset(buffer, 0, sizeof(buffer));
     mqttFixedHeader* m = (mqttFixedHeader*) buffer;
     etherHeader* ether = (etherHeader*) etherBuffer;
-    m->controlHeader = 0x32;
+    m->controlHeader = 0x30; //00110000   OLD 00110010
     m->remainLength = 0;
     mqttPublishHeader* p = (mqttPublishHeader*) m->variableHeader;
     uint16_t packetId = htons((random32() % (65000 - 0 + 1)) + 0);
@@ -165,7 +165,7 @@ void subscribeMqtt(char strTopic[])
     sub_list[sub_count++] = strTopic;
     memcpy(p->topicName, strTopic, topicLen);
     //handling qos
-    uint8_t qos = 2;
+    uint8_t qos = 0;
     uint8_t* qosPtr = (uint8_t*) (p->topicName + topicLen);
     memcpy(qosPtr, &qos, 1);
 

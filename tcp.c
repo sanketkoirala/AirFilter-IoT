@@ -256,16 +256,18 @@ void sendTcpPendingMessages(etherHeader *ether)
                    else if (PUBLISH_MESSAGE)
                    {
 //                       PUBLISH_MESSAGE = false;
-                       char buff2[10];
+                       char buff2[20];
                        char* temp_;
-                       char temp[] = "bmeTemp";
-                       char hum[] = "bmeHum";
-                       char press[] = "bmePress";
-                       char aqi[] = "bmeAQI";
+//                       char temp[] = "bmeTemp";
+//                       char hum[] = "bmeHum";
+//                       char press[] = "bmePress";
+                       char aqi[] = "bmeaqi";
                        bmeData_s* bmeData2 =  getBmeData();
                        temp_ = (char*)&aqi;
-                       snprintf(buff2, 8, "%.3f", bmeData2->AQI);
+                       snprintf(buff2, 15, "%d", (int)bmeData2->AQI);
                        publishMqtt(temp_, buff2);
+                       PUBLISH_MESSAGE = false;
+
                    }
 
                    break;
@@ -388,7 +390,7 @@ void processTcpResponse(etherHeader *ether)
 
         //variables for topic1
         memcpy(buffer, ptr, topicLen);
-        char topic1[] = "topic1";
+        char topic1[] = "6purifier";
         char on[] = "on";
         char off[] = "off";
         uint8_t* pon = (uint8_t*) &on;

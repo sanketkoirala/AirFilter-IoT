@@ -24,6 +24,10 @@ tcp.obj: ../socket.h
 tcp.obj: ../timer.h
 tcp.obj: ../mqtt.h
 tcp.obj: ../gpio.h
+tcp.obj: ../uart0.h
+tcp.obj: ../bme680.h
+tcp.obj: ../I2C3.h
+tcp.obj: ../tm4c123gh6pm.h
 
 ../tcp.c:
 
@@ -72,4 +76,12 @@ tcp.obj: ../gpio.h
 ../mqtt.h:
 
 ../gpio.h:
+
+../uart0.h:
+
+../bme680.h:
+
+../I2C3.h:
+
+../tm4c123gh6pm.h:
 
