@@ -1,7 +1,3 @@
-// Ethernet Framework for Projects 1 and 2
-// Spring 2025
-// Jason Losh
-
 //-----------------------------------------------------------------------------
 // Hardware Target
 //-----------------------------------------------------------------------------
@@ -40,56 +36,55 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-#include <I2C3.h>
+#include "communication/I2C3.h"
 #include "tm4c123gh6pm.h"
-#include "clock.h"
-#include "eeprom.h"
-#include "gpio.h"
-#include "spi0.h"
-#include "uart0.h"
-#include "wait.h"
-#include "timer.h"
-#include "eth0.h"
-#include "arp.h"
-#include "ip.h"
-#include "icmp.h"
-#include "udp.h"
-#include "tcp.h"
-#include "mqtt.h"
-#include "socket.h"
-#include "bme680.h"
-#include "I2C3.h"
+#include "clock/clock.h"
+#include "project-framework/eeprom.h"
+#include "gpio/gpio.h"
+#include "communication/spi0.h"
+#include "communication/uart0.h"
+#include "clock/wait.h"
+#include "clock/timer.h"
+#include "project-framework/eth0.h"
+#include "project-framework/arp.h"
+#include "project-framework/ip.h"
+#include "project-framework/icmp.h"
+#include "protocol/udp.h"
+#include "protocol/tcp.h"
+#include "protocol/mqtt.h"
+#include "project-framework/socket.h"
+#include "sensor/bme680.h"
 
 // Pins
-#define RED_LED PORTF,1
-#define BLUE_LED PORTF,2
-#define GREEN_LED PORTF,3
-#define PUSH_BUTTON PORTF,4
-#define FAN PORTD,3
+#define RED_LED PORTF, 1
+#define BLUE_LED PORTF, 2
+#define GREEN_LED PORTF, 3
+#define PUSH_BUTTON PORTF, 4
+#define FAN PORTD, 3
 
 // EEPROM Map
-#define EEPROM_DHCP        1
-#define EEPROM_IP          2
+#define EEPROM_DHCP 1
+#define EEPROM_IP 2
 #define EEPROM_SUBNET_MASK 3
-#define EEPROM_GATEWAY     4
-#define EEPROM_DNS         5
-#define EEPROM_TIME        6
-#define EEPROM_MQTT        7
-#define EEPROM_ERASED      0xFFFFFFFF
+#define EEPROM_GATEWAY 4
+#define EEPROM_DNS 5
+#define EEPROM_TIME 6
+#define EEPROM_MQTT 7
+#define EEPROM_ERASED 0xFFFFFFFF
 
-//global flags
+// global flags
 bool ARP_SENT = false;
 bool SYN_NEEDED = false;
 bool printAirData = false;
 
-//added flag to publish message is turned on every 15 sec by timer
+// added flag to publish message is turned on every 15 sec by timer
 volatile bool PUBLISH_MESSAGE = false;
 
 //-----------------------------------------------------------------------------
-// Subroutines                
+// Subroutines
 //-----------------------------------------------------------------------------
 
-//callback for timer added
+// callback for timer added
 void publishMessageCallback(void)
 {
     PUBLISH_MESSAGE = true;
@@ -126,9 +121,9 @@ void displayConnectionInfo()
     putsUart0("  HW:    ");
     for (i = 0; i < HW_ADD_LENGTH; i++)
     {
-        snprintf(str, sizeof(str), "%02"PRIu8, mac[i]);
+        snprintf(str, sizeof(str), "%02" PRIu8, mac[i]);
         putsUart0(str);
-        if (i < HW_ADD_LENGTH-1)
+        if (i < HW_ADD_LENGTH - 1)
             putcUart0(':');
     }
     putcUart0('\n');
@@ -136,9 +131,9 @@ void displayConnectionInfo()
     putsUart0("  IP:    ");
     for (i = 0; i < IP_ADD_LENGTH; i++)
     {
-        snprintf(str, sizeof(str), "%"PRIu8, ip[i]);
+        snprintf(str, sizeof(str), "%" PRIu8, ip[i]);
         putsUart0(str);
-        if (i < IP_ADD_LENGTH-1)
+        if (i < IP_ADD_LENGTH - 1)
             putcUart0('.');
     }
     putcUart0('\n');
@@ -146,9 +141,9 @@ void displayConnectionInfo()
     putsUart0("  SN:    ");
     for (i = 0; i < IP_ADD_LENGTH; i++)
     {
-        snprintf(str, sizeof(str), "%"PRIu8, ip[i]);
+        snprintf(str, sizeof(str), "%" PRIu8, ip[i]);
         putsUart0(str);
-        if (i < IP_ADD_LENGTH-1)
+        if (i < IP_ADD_LENGTH - 1)
             putcUart0('.');
     }
     putcUart0('\n');
@@ -156,9 +151,9 @@ void displayConnectionInfo()
     putsUart0("  GW:    ");
     for (i = 0; i < IP_ADD_LENGTH; i++)
     {
-        snprintf(str, sizeof(str), "%"PRIu8, ip[i]);
+        snprintf(str, sizeof(str), "%" PRIu8, ip[i]);
         putsUart0(str);
-        if (i < IP_ADD_LENGTH-1)
+        if (i < IP_ADD_LENGTH - 1)
             putcUart0('.');
     }
     putcUart0('\n');
@@ -166,9 +161,9 @@ void displayConnectionInfo()
     putsUart0("  DNS:   ");
     for (i = 0; i < IP_ADD_LENGTH; i++)
     {
-        snprintf(str, sizeof(str), "%"PRIu8, ip[i]);
+        snprintf(str, sizeof(str), "%" PRIu8, ip[i]);
         putsUart0(str);
-        if (i < IP_ADD_LENGTH-1)
+        if (i < IP_ADD_LENGTH - 1)
             putcUart0('.');
     }
     putcUart0('\n');
@@ -176,9 +171,9 @@ void displayConnectionInfo()
     putsUart0("  Time:  ");
     for (i = 0; i < IP_ADD_LENGTH; i++)
     {
-        snprintf(str, sizeof(str), "%"PRIu8, ip[i]);
+        snprintf(str, sizeof(str), "%" PRIu8, ip[i]);
         putsUart0(str);
-        if (i < IP_ADD_LENGTH-1)
+        if (i < IP_ADD_LENGTH - 1)
             putcUart0('.');
     }
     putcUart0('\n');
@@ -186,9 +181,9 @@ void displayConnectionInfo()
     putsUart0("  MQTT:  ");
     for (i = 0; i < IP_ADD_LENGTH; i++)
     {
-        snprintf(str, sizeof(str), "%"PRIu8, ip[i]);
+        snprintf(str, sizeof(str), "%" PRIu8, ip[i]);
         putsUart0(str);
-        if (i < IP_ADD_LENGTH-1)
+        if (i < IP_ADD_LENGTH - 1)
             putcUart0('.');
     }
     putcUart0('\n');
@@ -201,49 +196,49 @@ void displayConnectionInfo()
 void readConfiguration()
 {
     uint32_t temp;
-    uint8_t* ip;
+    uint8_t *ip;
 
     temp = readEeprom(EEPROM_IP);
     if (temp != EEPROM_ERASED)
     {
-        ip = (uint8_t*)&temp;
+        ip = (uint8_t *)&temp;
         setIpAddress(ip);
     }
     temp = readEeprom(EEPROM_SUBNET_MASK);
     if (temp != EEPROM_ERASED)
     {
-        ip = (uint8_t*)&temp;
+        ip = (uint8_t *)&temp;
         setIpSubnetMask(ip);
     }
     temp = readEeprom(EEPROM_GATEWAY);
     if (temp != EEPROM_ERASED)
     {
-        ip = (uint8_t*)&temp;
+        ip = (uint8_t *)&temp;
         setIpGatewayAddress(ip);
     }
     temp = readEeprom(EEPROM_DNS);
     if (temp != EEPROM_ERASED)
     {
-        ip = (uint8_t*)&temp;
+        ip = (uint8_t *)&temp;
         setIpDnsAddress(ip);
     }
     temp = readEeprom(EEPROM_TIME);
     if (temp != EEPROM_ERASED)
     {
-        ip = (uint8_t*)&temp;
+        ip = (uint8_t *)&temp;
         setIpTimeServerAddress(ip);
     }
     temp = readEeprom(EEPROM_MQTT);
     if (temp != EEPROM_ERASED)
     {
-        ip = (uint8_t*)&temp;
+        ip = (uint8_t *)&temp;
         setIpMqttBrokerAddress(ip);
     }
 }
 
 #define MAX_CHARS 80
-char strInput[MAX_CHARS+1];
-char* token;
+char strInput[MAX_CHARS + 1];
+char *token;
 uint8_t count = 0;
 
 uint8_t asciiToUint8(const char str[])
@@ -262,7 +257,7 @@ void processShell()
     char c;
     uint8_t i;
     uint8_t ip[IP_ADD_LENGTH];
-    uint32_t* p32;
+    uint32_t *p32;
     char *topic, *data;
 
     if (kbhitUart0())
@@ -328,15 +323,15 @@ void processShell()
                     token = strtok(NULL, " .");
                     ip[i] = asciiToUint8(token);
                 }
-                //removed from this version to save space: sendPingRequest(ip)
+                // removed from this version to save space: sendPingRequest(ip)
             }
             if (strcmp(token, "reboot") == 0)
             {
                 NVIC_APINT_R = NVIC_APINT_VECTKEY | NVIC_APINT_SYSRESETREQ;
             }
-            if(strcmp(token, "status") == 0)
+            if (strcmp(token, "status") == 0)
             {
-                socket* s = getSocket(0);
+                socket *s = getSocket(0);
                 s->PRINT_STATUS = true;
             }
             if (strcmp(token, "set") == 0)
@@ -350,7 +345,7 @@ void processShell()
                         ip[i] = asciiToUint8(token);
                     }
                     setIpAddress(ip);
-                    p32 = (uint32_t*)ip;
+                    p32 = (uint32_t *)ip;
                     writeEeprom(EEPROM_IP, *p32);
                 }
                 if (strcmp(token, "sn") == 0)
@@ -361,7 +356,7 @@ void processShell()
                         ip[i] = asciiToUint8(token);
                     }
                     setIpSubnetMask(ip);
-                    p32 = (uint32_t*)ip;
+                    p32 = (uint32_t *)ip;
                     writeEeprom(EEPROM_SUBNET_MASK, *p32);
                 }
                 if (strcmp(token, "gw") == 0)
@@ -372,7 +367,7 @@ void processShell()
                         ip[i] = asciiToUint8(token);
                     }
                     setIpGatewayAddress(ip);
-                    p32 = (uint32_t*)ip;
+                    p32 = (uint32_t *)ip;
                     writeEeprom(EEPROM_GATEWAY, *p32);
                 }
                 if (strcmp(token, "dns") == 0)
@@ -383,7 +378,7 @@ void processShell()
                         ip[i] = asciiToUint8(token);
                     }
                     setIpDnsAddress(ip);
-                    p32 = (uint32_t*)ip;
+                    p32 = (uint32_t *)ip;
                     writeEeprom(EEPROM_DNS, *p32);
                 }
                 if (strcmp(token, "time") == 0)
@@ -394,7 +389,7 @@ void processShell()
                         ip[i] = asciiToUint8(token);
                     }
                     setIpTimeServerAddress(ip);
-                    p32 = (uint32_t*)ip;
+                    p32 = (uint32_t *)ip;
                     writeEeprom(EEPROM_TIME, *p32);
                 }
                 if (strcmp(token, "mqtt") == 0)
@@ -405,7 +400,7 @@ void processShell()
                         ip[i] = asciiToUint8(token);
                     }
                     setIpMqttBrokerAddress(ip);
-                    p32 = (uint32_t*)ip;
+                    p32 = (uint32_t *)ip;
                     writeEeprom(EEPROM_MQTT, *p32);
                 }
             }
@@ -436,7 +431,7 @@ void processShell()
 int main(void)
 {
     uint8_t buffer[MAX_PACKET_SIZE];
-    etherHeader *data = (etherHeader*) buffer;
+    etherHeader *data = (etherHeader *)buffer;
     socket s;
 
     // Init controller
@@ -465,7 +460,7 @@ int main(void)
     readConfiguration();
     startbme();
 
-    //start timer added
+    // start timer added
     if (!startPeriodicTimer(publishMessageCallback, 10))
     {
         putsUart0("Failed to start publish timer\n");
@@ -479,31 +474,31 @@ int main(void)
     // Main Loop
     // RTOS and interrupts would greatly improve this code,
     // but the goal here is simplicity
-/* Start-up check for stored IP address ********************************/
+    /* Start-up check for stored IP address ********************************/
     uint8_t i = 0;
     uint8_t localAddress[4];
     uint8_t remoteAddress[4];
     getIpAddress(localAddress);
     getIpMqttBrokerAddress(remoteAddress);
     bool empty = true;
-    for(i = 0; i < IP_ADD_LENGTH; i++)
+    for (i = 0; i < IP_ADD_LENGTH; i++)
     {
         empty = remoteAddress[i] == 0;
     }
-    if(!empty)
+    if (!empty)
     {
         sendArpRequest(data, localAddress, remoteAddress);
     }
-/***********************************************************************/
+    /***********************************************************************/
 
-/*testing I2C for BME680 *******************************************/
-//    char buff[100];
-//    putsUart0("I2C test \n");
-//    uint8_t test = readDataFromRegI2C3(bme_add, id);
-//    snprintf(buff, 12, "ID: %d\n", test);
-//    putsUart0(buff);
+    /*testing I2C for BME680 *******************************************/
+    //    char buff[100];
+    //    putsUart0("I2C test \n");
+    //    uint8_t test = readDataFromRegI2C3(bme_add, id);
+    //    snprintf(buff, 12, "ID: %d\n", test);
+    //    putsUart0(buff);
 
-/*******************************************************************/
+    /*******************************************************************/
     while (true)
     {
         // Terminal processing here
@@ -519,7 +514,7 @@ int main(void)
 //            }
 #endif
         updateBmeData();
-        if(printAirData)
+        if (printAirData)
         {
             printData();
             printAirData = false;
@@ -545,15 +540,15 @@ int main(void)
             if (isArpRequest(data))
                 sendArpResponse(data);
 
-            //handle arp reponse
-            if(isArpResponse(data))
+            // handle arp reponse
+            if (isArpResponse(data))
                 processTcpArpResponse(data);
 
             // Handle IP datagram
             if (isIp(data))
             {
-            	if (isIpUnicast(data))
-            	{
+                if (isIpUnicast(data))
+                {
                     // Handle ICMP ping request
                     if (isPingRequest(data))
                     {
@@ -575,4 +570,3 @@ int main(void)
         }
     }
 }
-
