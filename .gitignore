@@ -1,0 +1,36 @@
+# CCS Project Files
+.launches/
+.settings/
+Debug/
+targetConfigs/
+.cproject
+.ccsproject
+.project
+
+# TM4C123GH6PM Library Files
+tm4c123gh6pm_startup_ccs.c
+tm4c123gh6pm.cmd
+tm4c123gh6pm.h
+
+# macOS
+.DS_Store
+
+# Build artifacts
+*.o
+*.obj
+*.d
+*.map
+*.out
+*.hex
+*.bin
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+*~
+*.tmp
+*.bak 
